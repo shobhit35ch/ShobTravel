@@ -20,8 +20,8 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="w-64 h-64 bg-accent/20 rounded-lg overflow-hidden flex-shrink-0">
               <img
-                src="https://images.unsplash.com/photo-1501286353178-1ec881214838?auto=format&fit=crop&w=256&h=256"
-                alt="Profile placeholder"
+                src="/lovable-uploads/230e8e59-f044-442a-9e84-f783643253eb.png"
+                alt="Shobhit at Moraine Lake"
                 className="w-full h-full object-cover"
               />
             </div>
