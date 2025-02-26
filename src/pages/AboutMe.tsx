@@ -19,7 +19,37 @@ const AboutMe = () => {
         { name: "Jasper National Park", description: "Wild beauty with glaciers and wildlife" },
         { name: "Vancouver", description: "Beautiful coastal city surrounded by mountains" }
       ],
-      imageUrl: "/lovable-uploads/230e8e59-f044-442a-9e84-f783643253eb.png" // Using your Moraine Lake image for Canada
+      imageUrl: "/lovable-uploads/230e8e59-f044-442a-9e84-f783643253eb.png"
+    },
+    {
+      country: "Italy",
+      description: "Discovered ancient history, art, and incredible cuisine",
+      places: [
+        { name: "Rome", description: "Explored the Colosseum, Vatican City, and ancient ruins" },
+        { name: "Florence", description: "Immersed in Renaissance art and Tuscan culture" },
+        { name: "Venice", description: "Navigated the romantic canals and historic streets" }
+      ],
+      imageUrl: "/placeholder.svg"
+    },
+    {
+      country: "United States",
+      description: "Ventured through diverse landscapes and vibrant cities",
+      places: [
+        { name: "Yellowstone National Park", description: "Witnessed geothermal wonders and wildlife" },
+        { name: "New York City", description: "Experienced the energy of the Big Apple" },
+        { name: "Grand Canyon", description: "Marveled at one of nature's greatest wonders" }
+      ],
+      imageUrl: "/placeholder.svg"
+    },
+    {
+      country: "Iceland",
+      description: "Experienced the land of fire and ice",
+      places: [
+        { name: "Blue Lagoon", description: "Relaxed in geothermal waters surrounded by lava fields" },
+        { name: "Golden Circle", description: "Explored waterfalls, geysers, and tectonic plates" },
+        { name: "Reykjavik", description: "Discovered the world's northernmost capital" }
+      ],
+      imageUrl: "/placeholder.svg"
     }
   ];
 
