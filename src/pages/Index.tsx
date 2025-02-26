@@ -20,7 +20,7 @@ const Index = () => {
             About Me
           </span>
           <h2 className="mt-2 font-display text-4xl text-primary mb-6">
-            Hello, I'm [Your Name]
+            Hello, I'm Shobhit
           </h2>
           <p className="text-primary/80 text-lg leading-relaxed">
             At 24, I've discovered that travel doesn't have to break the bank. 
