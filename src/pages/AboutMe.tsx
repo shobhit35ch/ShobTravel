@@ -49,7 +49,7 @@ const AboutMe = () => {
         { name: "Golden Circle", description: "Explored waterfalls, geysers, and tectonic plates" },
         { name: "Reykjavik", description: "Discovered the world's northernmost capital" }
       ],
-      imageUrl: "/placeholder.svg"
+      imageUrl: "/lovable-uploads/a0c8d7e6-a4a6-4e47-913b-d212f9ade26d.png"
     }
   ];
 
