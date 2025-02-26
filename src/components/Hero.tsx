@@ -2,6 +2,11 @@
 import { motion } from "framer-motion";
 
 const Hero = () => {
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById('about-me');
+    aboutSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
       <div
@@ -25,12 +30,12 @@ const Hero = () => {
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
             Join me on a journey of discovery, adventure, and budget-friendly travel tips
           </p>
-          <a
-            href="#latest-posts"
+          <button
+            onClick={scrollToAbout}
             className="inline-block bg-white text-primary px-8 py-3 rounded-full text-lg font-medium hover:bg-opacity-90 transition-all duration-300"
           >
             Start Reading
-          </a>
+          </button>
         </motion.div>
       </div>
 
