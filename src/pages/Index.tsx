@@ -18,7 +18,7 @@ const Index = () => {
       >
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="w-64 h-64 bg-accent/20 rounded-lg overflow-hidden flex-shrink-0">
+            <div className="w-80 h-96 bg-accent/20 rounded-lg overflow-hidden flex-shrink-0">
               <img
                 src="/lovable-uploads/230e8e59-f044-442a-9e84-f783643253eb.png"
                 alt="Shobhit at Moraine Lake"
