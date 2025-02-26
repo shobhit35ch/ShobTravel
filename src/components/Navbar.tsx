@@ -28,7 +28,7 @@ const Navbar = () => {
             to="/"
             className="text-2xl font-display text-primary hover:text-primary/80 transition-colors"
           >
-            Wanderlust
+            Shob Travels
           </Link>
           
           <div className="hidden md:flex items-center space-x-8">
