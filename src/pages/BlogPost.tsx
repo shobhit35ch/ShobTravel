@@ -121,8 +121,7 @@ const blogPosts = {
       - Try local specialties: Icelandic hot dogs, Dutch stroopwafels, and Belgian frites
     `,
     imageUrl: "/lovable-uploads/a0c8d7e6-a4a6-4e47-913b-d212f9ade26d.png"
-  },
-  // ... keep existing blog posts
+  }
 };
 
 const BlogPost = () => {
