@@ -1,6 +1,7 @@
 
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
@@ -12,6 +13,7 @@ import { MapPin } from "lucide-react";
 const AboutMe = () => {
   const visitedCountries = [
     {
+      id: "canada",
       country: "Canada",
       description: "Explored the breathtaking Canadian Rockies and vibrant cities",
       places: [
@@ -22,6 +24,7 @@ const AboutMe = () => {
       imageUrl: "/lovable-uploads/230e8e59-f044-442a-9e84-f783643253eb.png"
     },
     {
+      id: "italy",
       country: "Italy",
       description: "Discovered ancient history, art, and incredible cuisine",
       places: [
@@ -32,6 +35,7 @@ const AboutMe = () => {
       imageUrl: "/placeholder.svg"
     },
     {
+      id: "united-states",
       country: "United States",
       description: "Ventured through diverse landscapes and vibrant cities",
       places: [
@@ -42,6 +46,7 @@ const AboutMe = () => {
       imageUrl: "/placeholder.svg"
     },
     {
+      id: "iceland",
       country: "Iceland",
       description: "Experienced the land of fire and ice",
       places: [
@@ -101,33 +106,34 @@ const AboutMe = () => {
                 <AccordionContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
                     {visitedCountries.map((country, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-                      >
-                        <div className="h-48 overflow-hidden">
-                          <img
-                            src={country.imageUrl}
-                            alt={country.country}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="p-6">
-                          <h3 className="font-display text-xl text-primary mb-2">{country.country}</h3>
-                          <p className="text-primary/70 text-sm mb-4">{country.description}</p>
-                          <div className="space-y-3">
-                            {country.places.map((place, placeIndex) => (
-                              <div key={placeIndex} className="border-l-2 border-accent pl-3">
-                                <h4 className="font-medium text-primary">{place.name}</h4>
-                                <p className="text-primary/70 text-sm">{place.description}</p>
-                              </div>
-                            ))}
+                      <Link key={index} to={`/country/${country.id}`}>
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                        >
+                          <div className="h-48 overflow-hidden">
+                            <img
+                              src={country.imageUrl}
+                              alt={country.country}
+                              className="w-full h-full object-cover"
+                            />
                           </div>
-                        </div>
-                      </motion.div>
+                          <div className="p-6">
+                            <h3 className="font-display text-xl text-primary mb-2">{country.country}</h3>
+                            <p className="text-primary/70 text-sm mb-4">{country.description}</p>
+                            <div className="space-y-3">
+                              {country.places.map((place, placeIndex) => (
+                                <div key={placeIndex} className="border-l-2 border-accent pl-3">
+                                  <h4 className="font-medium text-primary">{place.name}</h4>
+                                  <p className="text-primary/70 text-sm">{place.description}</p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
+                      </Link>
                     ))}
                   </div>
                 </AccordionContent>
