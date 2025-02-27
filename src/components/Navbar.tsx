@@ -45,10 +45,10 @@ const Navbar = () => {
               Blog
             </Link>
             <Link
-              to="/budget-tips"
+              to="/travel-tips"
               className="text-primary/80 hover:text-primary transition-colors"
             >
-              Budget Tips
+              Travel Tips
             </Link>
             <Link
               to="/monetization"
