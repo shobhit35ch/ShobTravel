@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 
@@ -51,6 +50,45 @@ const TravelTips = () => {
                     <li>• Keep emergency contacts easily accessible</li>
                     <li>• Research local customs and etiquette</li>
                   </ul>
+                </div>
+              </div>
+            </section>
+            
+            {/* Hot Take Section */}
+            <section className="mb-16">
+              <div className="bg-[#8B5CF6]/10 p-8 rounded-lg border-2 border-[#8B5CF6]/20">
+                <h2 className="text-2xl font-display text-[#8B5CF6] mb-4 flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="mr-2"
+                  >
+                    <path d="M12 2v10.3a4 4 0 0 1-1.172 2.872L4 22"/>
+                    <path d="m16 18 4 4"/>
+                    <path d="m15 17 5 5"/>
+                    <path d="m9 6.8 2 2"/>
+                    <path d="m5 10.8 2 2"/>
+                    <path d="m3 14.8 2 2"/>
+                  </svg>
+                  Hot Take: Amex Gold for Travel
+                </h2>
+                <div className="text-primary/80 space-y-4">
+                  <p>
+                    Here's my controversial opinion: while the Amex Gold isn't traditionally marketed as a travel card, I believe it's actually one of the best travel companions you can have - if you play it smart.
+                  </p>
+                  <p>
+                    Most people overlook it because it's not explicitly a "travel card," but consider this: with 4X points at restaurants worldwide and the right welcome bonus (I've seen offers up to 90,000 points!), you can rack up points faster than with many premium travel cards. Those points transfer to airline partners at some incredible rates.
+                  </p>
+                  <p>
+                    Add in the $120 dining credit and $120 Uber credit (which includes Uber Eats), and you're essentially getting $240 in credits that can offset the annual fee. During your travels, these credits can cover your airport transfers and meals, making it a surprisingly powerful travel companion.
+                  </p>
                 </div>
               </div>
             </section>
