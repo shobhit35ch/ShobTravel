@@ -3,31 +3,38 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 
-// Sample blog post data - later this could come from a backend
 const blogPosts = [
   {
     id: 1,
-    title: "Top 10 Budget Travel Tips for 2024",
-    excerpt: "Discover how to explore the world without breaking the bank. From finding cheap flights to choosing affordable accommodations...",
-    date: "March 15, 2024",
-    imageUrl: "https://images.unsplash.com/photo-1472396961693-142e6e269027",
-    slug: "top-10-budget-travel-tips-2024"
+    title: "Memorial Weekend Adventure: Discovering Banff's Natural Wonders",
+    excerpt: "A long weekend journey through the Canadian Rockies, featuring stunning lakes, majestic mountains, and unforgettable hiking trails...",
+    date: "May 30, 2024",
+    imageUrl: "/lovable-uploads/230e8e59-f044-442a-9e84-f783643253eb.png",
+    slug: "banff-memorial-weekend-2024"
   },
   {
     id: 2,
-    title: "Hidden Gems: Southeast Asia's Secret Spots",
-    excerpt: "Venture off the beaten path and discover the lesser-known destinations that make Southeast Asia truly special...",
-    date: "March 10, 2024",
-    imageUrl: "https://images.unsplash.com/photo-1501286353178-1ec881214838",
-    slug: "hidden-gems-southeast-asia"
+    title: "European Alpine Adventure: Italy, Switzerland, and Iceland",
+    excerpt: "From the Italian Dolomites to Swiss Alps, concluding with Iceland's dramatic landscapes - a month-long journey through Europe's most stunning regions...",
+    date: "June 15, 2024",
+    imageUrl: "https://images.unsplash.com/photo-1501854140801-50d01698950b",
+    slug: "europe-adventure-2024"
   },
   {
     id: 3,
-    title: "A Beginner's Guide to Solo Travel",
-    excerpt: "Everything you need to know about embarking on your first solo adventure. From planning to safety tips...",
-    date: "March 5, 2024",
-    imageUrl: "https://images.unsplash.com/photo-1469041797191-50ace28483c3",
-    slug: "beginners-guide-solo-travel"
+    title: "Caribbean Paradise: Summer in Aruba",
+    excerpt: "White sandy beaches, crystal-clear waters, and endless summer vibes - exploring the happy island of Aruba...",
+    date: "August 10, 2024",
+    imageUrl: "https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151",
+    slug: "aruba-summer-2024"
+  },
+  {
+    id: 4,
+    title: "Northern European Journey: Iceland, Netherlands, and Belgium",
+    excerpt: "From Iceland's waterfalls to Dutch tulip fields and Belgian medieval towns - a summer adventure through Northern Europe...",
+    date: "August 25, 2023",
+    imageUrl: "/lovable-uploads/a0c8d7e6-a4a6-4e47-913b-d212f9ade26d.png",
+    slug: "northern-europe-2023"
   }
 ];
 
