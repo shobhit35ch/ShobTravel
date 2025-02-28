@@ -2,8 +2,62 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import { Briefcase, Mail, Handshake } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 const Monetization = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    message: ""
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      // Here you would typically send this to your backend
+      // For now, we'll just simulate a successful submission
+      console.log("Form submitted:", formData);
+      
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. I'll get back to you soon!",
+      });
+
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        message: ""
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -85,14 +139,93 @@ const Monetization = () => {
                 <h2 className="text-2xl font-display text-primary">Get in Touch</h2>
               </div>
               <p className="text-primary/80 mb-8">
-                Interested in working together? Send me an email with details about your project or collaboration opportunity. I look forward to discussing how we can create value together.
+                Interested in working together? Send me a message with details about your project or collaboration opportunity. I look forward to discussing how we can create value together.
               </p>
-              <a
-                href="mailto:your-email@example.com"
-                className="inline-block bg-accent px-6 py-3 rounded-full text-primary hover:bg-accent/80 transition-colors"
-              >
-                Contact Me
-              </a>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className="inline-block bg-accent px-6 py-3 rounded-full text-primary hover:bg-accent/80 transition-colors">
+                    Contact Me
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Send a Message</DialogTitle>
+                  </DialogHeader>
+                  <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label htmlFor="firstName" className="text-sm font-medium">
+                          First Name
+                        </label>
+                        <Input
+                          id="firstName"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="lastName" className="text-sm font-medium">
+                          Last Name
+                        </label>
+                        <Input
+                          id="lastName"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-medium">
+                        Email
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="phone" className="text-sm font-medium">
+                        Phone Number
+                      </label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-sm font-medium">
+                        Message
+                      </label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        className="min-h-[100px]"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full bg-accent px-6 py-3 rounded-lg text-primary hover:bg-accent/80 transition-colors"
+                    >
+                      Send Message
+                    </button>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </motion.div>
