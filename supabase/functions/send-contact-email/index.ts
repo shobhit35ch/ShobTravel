@@ -15,12 +15,12 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+    const resend = new Resend("re_4iLKvT3s_5vxAHCzA4QnibpgSRLCm3KTC");
     const { firstName, lastName, email, phone, message } = await req.json();
 
     const emailResponse = await resend.emails.send({
-      from: "onboarding@resend.dev", // Update this with your verified domain
-      to: "your-email@gmail.com", // Replace with your Gmail address
+      from: "onboarding@resend.dev",
+      to: "your-email@gmail.com", // Please provide your Gmail address
       subject: "New Contact Form Submission",
       html: `
         <h2>New Contact Form Submission</h2>
