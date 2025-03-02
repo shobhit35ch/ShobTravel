@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 interface FormData {
   firstName: string;
@@ -16,6 +17,7 @@ interface FormData {
 
 export const ContactDialog = () => {
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -26,6 +28,7 @@ export const ContactDialog = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
     try {
       const { data, error } = await supabase.functions.invoke('send-contact-email', {
@@ -53,6 +56,8 @@ export const ContactDialog = () => {
         description: "There was a problem sending your message. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -89,6 +94,7 @@ export const ContactDialog = () => {
                 value={formData.firstName}
                 onChange={handleChange}
                 required
+                disabled={isLoading}
               />
             </div>
             <div className="space-y-2">
@@ -101,6 +107,7 @@ export const ContactDialog = () => {
                 value={formData.lastName}
                 onChange={handleChange}
                 required
+                disabled={isLoading}
               />
             </div>
           </div>
@@ -115,6 +122,7 @@ export const ContactDialog = () => {
               value={formData.email}
               onChange={handleChange}
               required
+              disabled={isLoading}
             />
           </div>
           <div className="space-y-2">
@@ -127,6 +135,7 @@ export const ContactDialog = () => {
               type="tel"
               value={formData.phone}
               onChange={handleChange}
+              disabled={isLoading}
             />
           </div>
           <div className="space-y-2">
@@ -139,14 +148,23 @@ export const ContactDialog = () => {
               value={formData.message}
               onChange={handleChange}
               required
+              disabled={isLoading}
               className="min-h-[100px]"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-accent px-6 py-3 rounded-lg text-primary hover:bg-accent/80 transition-colors"
+            disabled={isLoading}
+            className="w-full bg-accent px-6 py-3 rounded-lg text-primary hover:bg-accent/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
           >
-            Send Message
+            {isLoading ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Sending...
+              </>
+            ) : (
+              'Send Message'
+            )}
           </button>
         </form>
       </DialogContent>
