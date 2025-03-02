@@ -196,7 +196,7 @@ const Monetization = () => {
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="phone" className="text-sm font-medium">
-                        Phone Number
+                        Phone Number (Optional)
                       </label>
                       <Input
                         id="phone"
@@ -204,7 +204,6 @@ const Monetization = () => {
                         type="tel"
                         value={formData.phone}
                         onChange={handleChange}
-                        required
                       />
                     </div>
                     <div className="space-y-2">
