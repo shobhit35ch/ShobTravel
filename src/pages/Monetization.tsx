@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import { Briefcase, Mail, Handshake } from "lucide-react";
@@ -7,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 const Monetization = () => {
   const { toast } = useToast();
@@ -22,9 +22,11 @@ const Monetization = () => {
     e.preventDefault();
     
     try {
-      // Here you would typically send this to your backend
-      // For now, we'll just simulate a successful submission
-      console.log("Form submitted:", formData);
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) throw error;
       
       toast({
         title: "Message Sent!",
@@ -40,6 +42,7 @@ const Monetization = () => {
         message: ""
       });
     } catch (error) {
+      console.error("Error sending message:", error);
       toast({
         title: "Error",
         description: "There was a problem sending your message. Please try again.",
