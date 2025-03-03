@@ -1,22 +1,23 @@
 
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
-import { Briefcase, Mail, Handshake } from "lucide-react";
+import { Briefcase, Mail, Handshake, Sparkles } from "lucide-react";
 import { ServiceCard } from "@/components/monetization/ServiceCard";
 import { WhyWorkWithMe } from "@/components/monetization/WhyWorkWithMe";
 import { ContactDialog } from "@/components/monetization/ContactDialog";
+import { QuickPlannerDialog } from "@/components/monetization/QuickPlannerDialog";
 
 const Monetization = () => {
   const services = [
     {
-      title: "Travel Planning",
-      description: "Looking for personalized travel itineraries? I offer custom travel planning services to help you create unforgettable experiences tailored to your preferences and style.",
+      title: "Personalized Travel Planning",
+      description: "Get expert travel planning with personal consultations to create truly unforgettable experiences tailored to your preferences and style.",
       Icon: Briefcase,
       bulletPoints: [
-        "Customized itinerary creation",
+        "One-on-one consultation calls",
+        "Detailed custom itineraries",
         "Local insights and hidden gems",
-        "Accommodation recommendations",
-        "Transportation planning"
+        "24/7 travel support"
       ]
     },
     {
@@ -45,11 +46,22 @@ const Monetization = () => {
         >
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-display text-primary mb-4">
-              Let's Work Together
+              Let's Plan Your Dream Trip
             </h1>
             <p className="text-primary/80 text-lg mb-12">
-              I'm always excited to collaborate with brands and businesses that align with my values and travel philosophy.
+              Choose between our AI-powered quick planner for instant ideas or schedule a personal consultation for a fully customized experience.
             </p>
+
+            <div className="bg-accent/10 p-8 rounded-lg mb-16">
+              <div className="flex items-center mb-6">
+                <Sparkles className="w-6 h-6 text-primary mr-3" />
+                <h2 className="text-2xl font-display text-primary">Quick Trip Planner</h2>
+              </div>
+              <p className="text-primary/80 mb-6">
+                Get instant travel suggestions based on your preferences using our AI planner. Perfect for initial ideas and inspiration.
+              </p>
+              <QuickPlannerDialog />
+            </div>
 
             <div className="grid md:grid-cols-2 gap-8 mb-16">
               {services.map((service, index) => (
@@ -62,10 +74,10 @@ const Monetization = () => {
             <div className="bg-white shadow-lg rounded-lg p-8">
               <div className="flex items-center mb-6">
                 <Mail className="w-6 h-6 text-primary mr-3" />
-                <h2 className="text-2xl font-display text-primary">Get in Touch</h2>
+                <h2 className="text-2xl font-display text-primary">Schedule a Consultation</h2>
               </div>
               <p className="text-primary/80 mb-8">
-                Interested in working together? Send me a message with details about your project or collaboration opportunity. I look forward to discussing how we can create value together.
+                Ready for a personalized travel experience? Schedule a consultation call to discuss your dream trip in detail.
               </p>
               <ContactDialog />
             </div>

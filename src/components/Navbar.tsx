@@ -57,10 +57,10 @@ const Navbar = () => {
               Work With Me
             </Link>
             <Link
-              to="/itinerary-builder"
+              to="/monetization"
               className="bg-accent px-4 py-2 rounded-full text-primary hover:bg-accent/80 transition-colors"
             >
-              Plan Your Trip
+              Get Started
             </Link>
           </div>
 
