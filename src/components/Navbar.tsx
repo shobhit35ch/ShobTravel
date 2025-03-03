@@ -39,6 +39,12 @@ const Navbar = () => {
               About Me
             </Link>
             <Link
+              to="/destinations"
+              className="text-primary/80 hover:text-primary transition-colors"
+            >
+              Destinations
+            </Link>
+            <Link
               to="/blog"
               className="text-primary/80 hover:text-primary transition-colors"
             >

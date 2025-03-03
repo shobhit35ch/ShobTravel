@@ -9,6 +9,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import AboutMe from "./pages/AboutMe";
+import Destinations from "./pages/Destinations";
 import CountryDetail from "./pages/CountryDetail";
 import TravelTips from "./pages/TravelTips";
 import Monetization from "./pages/Monetization";
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/about" element={<AboutMe />} />
+          <Route path="/destinations" element={<Destinations />} />
           <Route path="/travel-tips" element={<TravelTips />} />
           <Route path="/monetization" element={<Monetization />} />
           <Route path="/country/:countryId" element={<CountryDetail />} />
