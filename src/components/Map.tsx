@@ -57,7 +57,8 @@ const Map = ({ visitedCountries }: { visitedCountries: any[] }) => {
         let center;
         switch(country.country) {
           case 'Canada':
-            center = [-106.346771, 56.130366];
+            // Updated coordinates for Banff National Park, Alberta
+            center = [-115.928, 51.4968];
             break;
           case 'Italy':
             center = [12.56738, 41.87194];
