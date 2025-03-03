@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -8,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { MapPin } from "lucide-react";
+import { MapPin, PlaneTakeoff } from "lucide-react";
 
 const Destinations = () => {
   const visitedCountries = [
@@ -63,6 +62,19 @@ const Destinations = () => {
     { name: "New Zealand", description: "Aspire to explore both islands and their diverse landscapes." }
   ];
 
+  const upcomingTrips = [
+    {
+      country: "Guatemala",
+      description: "Planning to explore ancient Mayan ruins and vibrant culture",
+      places: [
+        { name: "Antigua", description: "Colonial city surrounded by volcanoes" },
+        { name: "Lake Atitlan", description: "Stunning lake with traditional Mayan villages" },
+        { name: "Tikal", description: "Ancient Mayan city in the rainforest" }
+      ],
+      imageUrl: "/placeholder.svg"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -112,6 +124,46 @@ const Destinations = () => {
                         </div>
                       </motion.div>
                     </Link>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="upcoming">
+              <AccordionTrigger className="flex items-center gap-2 text-xl">
+                <PlaneTakeoff className="h-5 w-5" />
+                Where I'm Going
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+                  {upcomingTrips.map((trip, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    >
+                      <div className="h-48 overflow-hidden">
+                        <img
+                          src={trip.imageUrl}
+                          alt={trip.country}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="font-display text-xl text-primary mb-2">{trip.country}</h3>
+                        <p className="text-primary/70 text-sm mb-4">{trip.description}</p>
+                        <div className="space-y-3">
+                          {trip.places.map((place, placeIndex) => (
+                            <div key={placeIndex} className="border-l-2 border-accent pl-3">
+                              <h4 className="font-medium text-primary">{place.name}</h4>
+                              <p className="text-primary/70 text-sm">{place.description}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
                   ))}
                 </div>
               </AccordionContent>
