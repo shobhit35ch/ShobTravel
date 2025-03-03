@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -17,21 +16,10 @@ const Map = ({ visitedCountries }: { visitedCountries: any[] }) => {
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/light-v11',
       projection: 'globe',
-      zoom: 1.5,
-      center: [30, 15],
-      pitch: 45,
+      zoom: 1,
+      center: [0, 20],
+      interactive: false, // Disable all map interactions
     });
-
-    // Add navigation controls
-    map.current.addControl(
-      new mapboxgl.NavigationControl({
-        visualizePitch: true,
-      }),
-      'top-right'
-    );
-
-    // Disable scroll zoom for smoother experience
-    map.current.scrollZoom.disable();
 
     map.current.on('style.load', () => {
       // Add atmosphere and fog effects
@@ -57,7 +45,6 @@ const Map = ({ visitedCountries }: { visitedCountries: any[] }) => {
         let center;
         switch(country.country) {
           case 'Canada':
-            // Updated coordinates for Banff National Park, Alberta
             center = [-115.928, 51.4968];
             break;
           case 'Italy':
