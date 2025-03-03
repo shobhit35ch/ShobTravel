@@ -1,8 +1,7 @@
-
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import { motion } from "framer-motion";
-import { Mountains, TreeDeciduous, Mountain, Tent } from "lucide-react";
+import { Mountain, TreeDeciduous, Tent } from "lucide-react";
 
 const Index = () => {
   return (
@@ -54,7 +53,7 @@ const Index = () => {
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-3">
-                  <Mountains className="h-5 w-5 text-accent" />
+                  <Mountain className="h-5 w-5 text-accent" />
                   <span className="text-sm font-medium text-accent">Switzerland</span>
                 </div>
                 <h3 className="font-display text-2xl text-primary mb-2">Grindelwald: Living Your Main Character Energy</h3>
