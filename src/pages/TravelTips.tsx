@@ -18,6 +18,38 @@ const TravelTips = () => {
               Travel Tips & Resources
             </h1>
             
+            {/* Booking Resources Section */}
+            <section className="mb-16">
+              <h2 className="text-2xl font-display text-primary mb-6">Recommended Booking Resources</h2>
+              <div className="grid gap-6">
+                <div className="bg-secondary/50 p-6 rounded-lg">
+                  <h3 className="font-display text-lg text-primary mb-3">Ground Transportation with Omio</h3>
+                  <p className="text-primary/80 mb-4">
+                    For trains and buses across Europe and beyond, I highly recommend using Omio. It's my go-to platform because:
+                  </p>
+                  <ul className="space-y-3 text-primary/80">
+                    <li>• Compare multiple transport options in one search</li>
+                    <li>• Easy-to-use mobile tickets in the app</li>
+                    <li>• Available in English with excellent customer support</li>
+                    <li>• Often finds better deals than booking directly</li>
+                  </ul>
+                </div>
+                
+                <div className="bg-secondary/50 p-6 rounded-lg">
+                  <h3 className="font-display text-lg text-primary mb-3">Cruise Deals on VacationsToGo</h3>
+                  <p className="text-primary/80 mb-4">
+                    VacationsToGo is my secret weapon for finding incredible cruise deals. Here's why I love it:
+                  </p>
+                  <ul className="space-y-3 text-primary/80">
+                    <li>• Up to 90% off last-minute cruise deals</li>
+                    <li>• Comprehensive search across all major cruise lines</li>
+                    <li>• Detailed port information and itineraries</li>
+                    <li>• Price alerts for specific cruises or destinations</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            
             {/* General Travel Tips Section */}
             <section className="mb-16">
               <h2 className="text-2xl font-display text-primary mb-6">Essential Travel Tips</h2>
