@@ -52,15 +52,9 @@ const Navbar = () => {
             </Link>
             <Link
               to="/monetization"
-              className="text-primary/80 hover:text-primary transition-colors"
+              className="bg-accent px-6 py-2 rounded-full text-primary hover:bg-accent/80 transition-colors"
             >
               Work With Me
-            </Link>
-            <Link
-              to="/monetization"
-              className="bg-accent px-4 py-2 rounded-full text-primary hover:bg-accent/80 transition-colors"
-            >
-              Get Started
             </Link>
           </div>
 
