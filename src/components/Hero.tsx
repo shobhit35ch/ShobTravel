@@ -2,9 +2,9 @@
 import { motion } from "framer-motion";
 
 const Hero = () => {
-  const scrollToAbout = () => {
-    const aboutSection = document.getElementById('about-me');
-    aboutSection?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToAdventures = () => {
+    const adventuresSection = document.getElementById('latest-adventures');
+    adventuresSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -31,7 +31,7 @@ const Hero = () => {
             Join me on a journey of discovery, adventure, and budget-friendly travel tips
           </p>
           <button
-            onClick={scrollToAbout}
+            onClick={scrollToAdventures}
             className="inline-block bg-white text-primary px-8 py-3 rounded-full text-lg font-medium hover:bg-opacity-90 transition-all duration-300"
           >
             Start Reading

@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import { motion } from "framer-motion";
@@ -10,6 +11,7 @@ const Index = () => {
       <Hero />
       
       <motion.section
+        id="latest-adventures"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
