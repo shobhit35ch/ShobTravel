@@ -9,13 +9,250 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      ad_campaigns: {
+        Row: {
+          advertiser: string
+          budget: number
+          created_at: string | null
+          end_date: string
+          id: string
+          name: string
+          start_date: string
+          total_clicks: number | null
+          total_impressions: number | null
+        }
+        Insert: {
+          advertiser: string
+          budget: number
+          created_at?: string | null
+          end_date: string
+          id?: string
+          name: string
+          start_date: string
+          total_clicks?: number | null
+          total_impressions?: number | null
+        }
+        Update: {
+          advertiser?: string
+          budget?: number
+          created_at?: string | null
+          end_date?: string
+          id?: string
+          name?: string
+          start_date?: string
+          total_clicks?: number | null
+          total_impressions?: number | null
+        }
+        Relationships: []
+      }
+      ad_spaces: {
+        Row: {
+          active: boolean | null
+          created_at: string | null
+          current_ad_id: string | null
+          id: string
+          location: string
+          name: string
+          size: string
+        }
+        Insert: {
+          active?: boolean | null
+          created_at?: string | null
+          current_ad_id?: string | null
+          id?: string
+          location: string
+          name: string
+          size: string
+        }
+        Update: {
+          active?: boolean | null
+          created_at?: string | null
+          current_ad_id?: string | null
+          id?: string
+          location?: string
+          name?: string
+          size?: string
+        }
+        Relationships: []
+      }
+      ads: {
+        Row: {
+          active: boolean | null
+          alt_text: string | null
+          campaign_id: string | null
+          clicks: number | null
+          created_at: string | null
+          destination_url: string
+          id: string
+          image_url: string
+          impressions: number | null
+        }
+        Insert: {
+          active?: boolean | null
+          alt_text?: string | null
+          campaign_id?: string | null
+          clicks?: number | null
+          created_at?: string | null
+          destination_url: string
+          id?: string
+          image_url: string
+          impressions?: number | null
+        }
+        Update: {
+          active?: boolean | null
+          alt_text?: string | null
+          campaign_id?: string | null
+          clicks?: number | null
+          created_at?: string | null
+          destination_url?: string
+          id?: string
+          image_url?: string
+          impressions?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ads_campaign_id_fkey"
+            columns: ["campaign_id"]
+            isOneToOne: false
+            referencedRelation: "ad_campaigns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      blog_posts: {
+        Row: {
+          content: string
+          created_at: string | null
+          featured_image: string | null
+          id: string
+          meta_description: string | null
+          published: boolean | null
+          slug: string
+          title: string
+          updated_at: string | null
+          views: number | null
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          featured_image?: string | null
+          id?: string
+          meta_description?: string | null
+          published?: boolean | null
+          slug: string
+          title: string
+          updated_at?: string | null
+          views?: number | null
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          featured_image?: string | null
+          id?: string
+          meta_description?: string | null
+          published?: boolean | null
+          slug?: string
+          title?: string
+          updated_at?: string | null
+          views?: number | null
+        }
+        Relationships: []
+      }
+      categories: {
+        Row: {
+          description: string | null
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          description?: string | null
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          description?: string | null
+          id?: string
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
+      Contact: {
+        Row: {
+          created_at: string
+          Email: string | null
+          First_name: string | null
+          id: number
+          Last_name: string | null
+          Phone: number | null
+        }
+        Insert: {
+          created_at?: string
+          Email?: string | null
+          First_name?: string | null
+          id?: number
+          Last_name?: string | null
+          Phone?: number | null
+        }
+        Update: {
+          created_at?: string
+          Email?: string | null
+          First_name?: string | null
+          id?: number
+          Last_name?: string | null
+          Phone?: number | null
+        }
+        Relationships: []
+      }
+      post_categories: {
+        Row: {
+          category_id: string
+          post_id: string
+        }
+        Insert: {
+          category_id: string
+          post_id: string
+        }
+        Update: {
+          category_id?: string
+          post_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "post_categories_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "post_categories_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      track_ad_click: {
+        Args: {
+          ad_id: string
+        }
+        Returns: undefined
+      }
+      track_ad_impression: {
+        Args: {
+          ad_id: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

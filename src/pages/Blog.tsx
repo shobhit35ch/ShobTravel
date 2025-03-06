@@ -1,7 +1,7 @@
-
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import AdSpace from "@/components/ads/AdSpace";
 
 const blogPosts = [
   {
@@ -51,6 +51,9 @@ const Blog = () => {
       >
         <h1 className="text-4xl font-display text-primary mb-8 text-center">Travel Stories</h1>
         
+        {/* Top banner ad */}
+        <AdSpace location="blog-top" className="w-full h-[90px] mb-8" />
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
             <motion.article
@@ -76,6 +79,9 @@ const Blog = () => {
             </motion.article>
           ))}
         </div>
+        
+        {/* Bottom banner ad */}
+        <AdSpace location="blog-bottom" className="w-full h-[90px] mt-8" />
       </motion.div>
     </div>
   );
