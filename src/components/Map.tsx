@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -16,8 +15,8 @@ const Map = ({ visitedCountries }: { visitedCountries: any[] }) => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/light-v11',
-      projection: 'globe',
-      zoom: 1,
+      projection: 'mercator',
+      zoom: 1.5,
       center: [0, 20],
       interactive: false, // Disable all map interactions
     });
@@ -76,7 +75,7 @@ const Map = ({ visitedCountries }: { visitedCountries: any[] }) => {
   }, [visitedCountries, mapboxToken]);
 
   return (
-    <div className="relative w-full h-[500px] mb-8">
+    <div className="relative w-full h-[600px] mb-8">
       {!mapboxToken && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-secondary/10 rounded-lg p-4 z-10">
           <p className="text-primary mb-2">Please enter your Mapbox public token to view the map:</p>
