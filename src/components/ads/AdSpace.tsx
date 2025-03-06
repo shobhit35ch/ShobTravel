@@ -1,34 +1,36 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from "@/integrations/supabase/client";
+import type { Database } from "@/integrations/supabase/types";
 
 interface AdSpaceProps {
   location: string;
   className?: string;
 }
 
+type Ad = Database['public']['Tables']['ads']['Row'];
+type AdSpace = Database['public']['Tables']['ad_spaces']['Row'] & {
+  ads: Ad | null;
+};
+
 const AdSpace = ({ location, className = "" }: AdSpaceProps) => {
+  const [adData, setAdData] = useState<Ad | null>(null);
+
   useEffect(() => {
     const loadAd = async () => {
       try {
-        // Get active ad for this location
         const { data: adSpace } = await supabase
           .from('ad_spaces')
           .select(`
             *,
-            ads:current_ad_id (
-              id,
-              image_url,
-              destination_url,
-              alt_text,
-              campaign_id
-            )
+            ads:ads!inner(*)
           `)
           .eq('location', location)
           .eq('active', true)
-          .single();
+          .maybeSingle();
 
         if (adSpace?.ads) {
+          setAdData(adSpace.ads);
           // Track impression
           await supabase.rpc('track_ad_impression', {
             ad_id: adSpace.ads.id
@@ -42,9 +44,32 @@ const AdSpace = ({ location, className = "" }: AdSpaceProps) => {
     loadAd();
   }, [location]);
 
+  if (!adData) {
+    return <div className={`ad-space ${className}`} />;
+  }
+
   return (
     <div className={`ad-space ${className}`}>
-      {/* Ad content will be loaded dynamically */}
+      <a 
+        href={adData.destination_url}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={async () => {
+          try {
+            await supabase.rpc('track_ad_click', {
+              ad_id: adData.id
+            });
+          } catch (error) {
+            console.error('Error tracking click:', error);
+          }
+        }}
+      >
+        <img 
+          src={adData.image_url} 
+          alt={adData.alt_text || 'Advertisement'} 
+          className="w-full h-full object-cover"
+        />
+      </a>
     </div>
   );
 };
