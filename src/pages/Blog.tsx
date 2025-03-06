@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -10,7 +11,8 @@ const blogPosts = [
     excerpt: "A long weekend journey through the Canadian Rockies, featuring stunning lakes, majestic mountains, and unforgettable hiking trails...",
     date: "May 30, 2024",
     imageUrl: "/lovable-uploads/230e8e59-f044-442a-9e84-f783643253eb.png",
-    slug: "banff-memorial-weekend-2024"
+    slug: "banff-memorial-weekend-2024",
+    worthItRating: "10/10 - A must-do for outdoor enthusiasts"
   },
   {
     id: 2,
@@ -18,7 +20,8 @@ const blogPosts = [
     excerpt: "From the Italian Dolomites to Swiss Alps, concluding with Iceland's dramatic landscapes - a month-long journey through Europe's most stunning regions...",
     date: "June 15, 2024",
     imageUrl: "https://images.unsplash.com/photo-1501854140801-50d01698950b",
-    slug: "europe-adventure-2024"
+    slug: "europe-adventure-2024",
+    worthItRating: "9.5/10 - Epic hiking and incredible food"
   },
   {
     id: 3,
@@ -26,7 +29,8 @@ const blogPosts = [
     excerpt: "White sandy beaches, crystal-clear waters, and endless summer vibes - exploring the happy island of Aruba...",
     date: "August 10, 2024",
     imageUrl: "https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151",
-    slug: "aruba-summer-2024"
+    slug: "aruba-summer-2024",
+    worthItRating: "8/10 - Beautiful, but missed the mountains"
   },
   {
     id: 4,
@@ -34,7 +38,8 @@ const blogPosts = [
     excerpt: "From Iceland's waterfalls to Dutch tulip fields and Belgian medieval towns - a summer adventure through Northern Europe...",
     date: "August 25, 2023",
     imageUrl: "/lovable-uploads/a0c8d7e6-a4a6-4e47-913b-d212f9ade26d.png",
-    slug: "northern-europe-2023"
+    slug: "northern-europe-2023",
+    worthItRating: "9/10 - Perfect blend of nature and culture"
   }
 ];
 
@@ -73,7 +78,10 @@ const Blog = () => {
                   <span className="text-sm text-accent font-medium">{post.date}</span>
                   <h2 className="text-xl font-display text-primary mt-2 mb-3">{post.title}</h2>
                   <p className="text-primary/80 text-sm line-clamp-3">{post.excerpt}</p>
-                  <span className="inline-block mt-4 text-accent font-medium">Read more →</span>
+                  <div className="mt-4 flex justify-between items-center">
+                    <span className="inline-block text-accent font-medium">Read more →</span>
+                    <span className="text-sm font-medium text-primary/70">{post.worthItRating}</span>
+                  </div>
                 </div>
               </Link>
             </motion.article>

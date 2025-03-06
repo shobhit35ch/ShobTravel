@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
 
@@ -27,10 +26,11 @@ const AboutMe = () => {
             <div className="text-center md:text-left">
               <h1 className="font-display text-4xl text-primary mb-6">About Me</h1>
               <p className="text-primary/80 text-lg leading-relaxed mb-8">
-                Hey there! I'm Shobhit, a 24-year-old travel enthusiast who believes 
-                that exploring the world shouldn't drain your savings. Through my 
-                journeys across different continents, I've mastered the art of 
-                budget-friendly travel while creating unforgettable memories.
+                Hey there! I'm Shobhit, a 24-year-old travel enthusiast with a deep passion for 
+                mountain adventures and hiking trails. When I'm not exploring new peaks or 
+                scenic viewpoints, you'll find me trying local cuisines or planning my next 
+                outdoor expedition. I believe that exploring the world shouldn't drain your 
+                savings, and I'm here to share how I make it work.
               </p>
             </div>
           </div>
@@ -68,6 +68,26 @@ const AboutMe = () => {
               job. I want to help others understand that with some creativity, flexibility, 
               and yes, a bit of privilege, it's possible to build a life that balances 
               professional growth with exploring the world.
+            </p>
+          </div>
+
+          {/* Interests Section */}
+          <div className="mt-12 space-y-6 text-primary/80 text-lg leading-relaxed">
+            <h2 className="text-2xl font-display text-primary mb-4">What Gets Me Excited</h2>
+            <p>
+              As someone who thrives in the outdoors, I'm constantly seeking out new hiking 
+              trails and mountain vistas. I maintain an active lifestyle - not in a 
+              gym-influencer way, but enough to tackle challenging trails and long days of 
+              exploration. This balance of fitness and adventure has allowed me to fully 
+              immerse myself in some of the world's most breathtaking landscapes.
+            </p>
+            <p>
+              Food is another passion of mine. I believe that experiencing local cuisine is 
+              just as important as visiting tourist spots. Whether it's a hole-in-the-wall 
+              restaurant in the Alps or a street food stall in Asia, I'm always eager to 
+              try authentic local dishes. I rate my travel experiences not just by the 
+              views, but by the complete sensory experience - the trails, the food, and 
+              the local culture all play a part in my adventure ratings.
             </p>
           </div>
         </div>
