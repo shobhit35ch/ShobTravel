@@ -47,14 +47,14 @@ const Blog = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 py-16"
+        className="container mx-auto px-4 py-16 max-w-5xl"
       >
         <h1 className="text-4xl font-display text-primary mb-8 text-center">Travel Stories</h1>
         
         {/* Top banner ad */}
         <AdSpace location="blog-top" className="w-full h-[90px] mb-8" />
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {blogPosts.map((post) => (
             <motion.article
               key={post.id}
