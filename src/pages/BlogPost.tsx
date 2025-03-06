@@ -147,53 +147,50 @@ const BlogPost = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 py-16 max-w-5xl"
+        className="container mx-auto px-4 py-16 max-w-3xl"
       >
-        <div className="flex flex-col lg:flex-row gap-8">
-          <div className="flex-1">
-            <Link
-              to="/blog"
-              className="inline-flex items-center text-accent hover:text-accent/80 mb-8 transition-colors"
+        <div className="mb-8">
+          <Link
+            to="/blog"
+            className="inline-flex items-center text-accent hover:text-accent/80 transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="mr-2 h-4 w-4"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2 h-4 w-4"
-              >
-                <path d="m15 18-6-6 6-6"/>
-              </svg>
-              Back to Blog
-            </Link>
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+            Back to Blog
+          </Link>
+        </div>
             
-            <img
-              src={post.imageUrl}
-              alt={post.title}
-              className="w-full h-[400px] object-cover rounded-lg mb-8"
-            />
-            
-            <span className="text-accent font-medium">{post.date}</span>
-            <h1 className="text-4xl font-display text-primary mt-2 mb-8">{post.title}</h1>
-            
-            <div className="prose prose-lg max-w-none">
-              {post.content.split('\n').map((paragraph, index) => (
-                <p key={index} className="text-primary/80 mb-4">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </div>
-          
-          <aside className="w-full lg:w-64 space-y-8">
-            <AdSpace location="post-sidebar-top" className="w-full h-[300px]" />
-            <AdSpace location="post-sidebar-bottom" className="w-full h-[300px]" />
-          </aside>
+        <img
+          src={post.imageUrl}
+          alt={post.title}
+          className="w-full h-[400px] object-cover rounded-lg mb-8"
+        />
+        
+        <span className="text-accent font-medium">{post.date}</span>
+        <h1 className="text-4xl font-display text-primary mt-2 mb-8">{post.title}</h1>
+        
+        <div className="prose prose-lg max-w-none">
+          {post.content.split('\n').map((paragraph, index) => (
+            <p key={index} className="text-primary/80 mb-4">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        <div className="mt-8 space-y-8">
+          <AdSpace location="post-bottom" className="w-full h-[90px]" />
         </div>
       </motion.article>
     </div>
