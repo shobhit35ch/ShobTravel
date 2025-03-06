@@ -9,9 +9,6 @@ interface AdSpaceProps {
 }
 
 type Ad = Database['public']['Tables']['ads']['Row'];
-type AdSpace = Database['public']['Tables']['ad_spaces']['Row'] & {
-  ads: Ad | null;
-};
 
 const AdSpace = ({ location, className = "" }: AdSpaceProps) => {
   const [adData, setAdData] = useState<Ad | null>(null);
@@ -22,18 +19,19 @@ const AdSpace = ({ location, className = "" }: AdSpaceProps) => {
         const { data: adSpace } = await supabase
           .from('ad_spaces')
           .select(`
-            *,
-            ads:ads!inner(*)
+            id,
+            current_ad_id,
+            ads (*)
           `)
           .eq('location', location)
           .eq('active', true)
           .maybeSingle();
 
         if (adSpace?.ads) {
-          setAdData(adSpace.ads);
+          setAdData(adSpace.ads[0]);
           // Track impression
           await supabase.rpc('track_ad_impression', {
-            ad_id: adSpace.ads.id
+            ad_id: adSpace.ads[0].id
           });
         }
       } catch (error) {
