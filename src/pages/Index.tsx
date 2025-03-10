@@ -1,8 +1,7 @@
-
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import { motion } from "framer-motion";
-import { Mountain, TreeDeciduous, Tent } from "lucide-react";
+import { Mountain, TreeDeciduous, Tent, Landmark } from "lucide-react";
 
 const Index = () => {
   return (
@@ -23,6 +22,28 @@ const Index = () => {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {/* Rome Card */}
+            <motion.div
+              whileHover={{ y: -5 }}
+              className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <div className="aspect-video overflow-hidden">
+                <img
+                  src="/lovable-uploads/05d07f01-1fcb-4671-ae21-0ad4391dcec5.png"
+                  alt="Trevi Fountain, Rome"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Landmark className="h-5 w-5 text-accent" />
+                  <span className="text-sm font-medium text-accent">Rome, Italy</span>
+                </div>
+                <h3 className="font-display text-2xl text-primary mb-2">Rome: Where History Meets Modern Magic</h3>
+                <p className="text-primary/70">Discover the eternal city's iconic fountains, ancient ruins, and vibrant street life. Every corner tells a story! 🏛️ #WhenInRome</p>
+              </div>
+            </motion.div>
+
             {/* Banff Card */}
             <motion.div
               whileHover={{ y: -5 }}

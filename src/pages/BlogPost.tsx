@@ -124,6 +124,40 @@ const blogPosts = {
       - Try local specialties: Icelandic hot dogs, Dutch stroopwafels, and Belgian frites
     `,
     imageUrl: "/lovable-uploads/a0c8d7e6-a4a6-4e47-913b-d212f9ade26d.png"
+  },
+  "rome-eternal-city-2024": {
+    title: "Rome: Eternal City's Hidden Gems and Must-See Wonders",
+    date: "March 15, 2024",
+    content: `
+      After years of dreaming about visiting Rome, I finally made it to the Eternal City. This trip exceeded all expectations, combining iconic landmarks with hidden local spots that made me fall in love with Roma.
+
+      The Trevi Fountain at Dawn:
+      Starting my days early proved to be the best decision. Arriving at the Trevi Fountain just as the sun rose meant I could experience this magnificent baroque masterpiece without the usual crowds. The morning light playing off the water and the intricate sculptures created a magical atmosphere that photos barely capture.
+
+      Must-Do Rome Tips:
+      - Visit major attractions early morning or late evening
+      - Get the Roma Pass for transport and museum access
+      - Try local pasta at trattorias away from tourist spots
+      - Take a walking tour of the Jewish Ghetto
+      - Don't miss aperitivo time (6-8 PM)
+
+      Beyond the Tourist Trail:
+      While the Colosseum and Vatican are must-sees, Rome's real charm lies in its quieter neighborhoods. Trastevere's winding streets, Monti's artisan shops, and the orange gardens of Aventine Hill showed me a different side of the city.
+
+      Food Journey:
+      - Morning cappuccino at Sant'Eustachio Il Caffè
+      - Pasta alla Carbonara at Da Enzo
+      - Gelato at Fatamorgana
+      - Pizza al taglio at Bonci Pizzarium
+
+      Travel Tips:
+      - Book major attractions in advance
+      - Carry a water bottle (use public fountains)
+      - Learn basic Italian phrases
+      - Wear comfortable walking shoes
+      - Respect dress codes for churches
+    `,
+    imageUrl: "/lovable-uploads/05d07f01-1fcb-4671-ae21-0ad4391dcec5.png"
   }
 };
 
