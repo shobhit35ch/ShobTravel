@@ -24,17 +24,17 @@ const CountryDetail = () => {
 
   // This would ideally come from a database, but for now we'll hardcode it
   const countriesData: Record<string, CountryData> = {
-    canada: {
-      country: "Canada",
-      description: "Explored the breathtaking Canadian Rockies and vibrant cities",
+    italy: {
+      country: "Italy",
+      description: "Discovered ancient history, art, and incredible cuisine",
       places: [
-        { name: "Banff National Park", description: "Home to the stunning Moraine Lake and incredible mountain landscapes" },
-        { name: "Jasper National Park", description: "Wild beauty with glaciers and wildlife" },
-        { name: "Vancouver", description: "Beautiful coastal city surrounded by mountains" }
+        { name: "Rome", description: "Explored the Colosseum, Vatican City, and the stunning Trevi Fountain" },
+        { name: "Florence", description: "Immersed in Renaissance art and Tuscan culture" },
+        { name: "Venice", description: "Navigated the romantic canals and historic streets" }
       ],
-      imageUrl: "/lovable-uploads/230e8e59-f044-442a-9e84-f783643253eb.png",
-      detailedDescription: "My journey through Canada was a remarkable adventure through some of North America's most stunning landscapes. From the turquoise waters of Moraine Lake to the rugged peaks of the Canadian Rockies, every moment was filled with awe-inspiring natural beauty.",
-      gallery: ["/lovable-uploads/230e8e59-f044-442a-9e84-f783643253eb.png"]
+      imageUrl: "/lovable-uploads/05d07f01-1fcb-4671-ae21-0ad4391dcec5.png",
+      detailedDescription: "Italy is a country that captures your heart with its rich history, stunning architecture, and incredible food culture. From the ancient ruins of Rome to the artistic legacy of Florence, every city tells its own unique story through centuries of history, art, and culture.",
+      gallery: ["/lovable-uploads/05d07f01-1fcb-4671-ae21-0ad4391dcec5.png"]
     },
     iceland: {
       country: "Iceland",
@@ -73,11 +73,11 @@ const CountryDetail = () => {
         className="container mx-auto px-4 pt-32 pb-16"
       >
         <Link
-          to="/about"
+          to="/destinations"
           className="inline-flex items-center text-primary hover:text-primary/80 mb-8"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to About
+          Back to Destinations
         </Link>
 
         <div className="max-w-4xl mx-auto">
