@@ -49,6 +49,33 @@ const blogPosts = [
     imageUrl: "/lovable-uploads/a0c8d7e6-a4a6-4e47-913b-d212f9ade26d.png",
     slug: "northern-europe-2023",
     worthItRating: "9/10 - Perfect blend of nature and culture"
+  },
+  {
+    id: 5,
+    title: "Island Paradise: Winter Escape to Hawaii",
+    excerpt: "Escaping the winter chill for the tropical warmth of Hawaii's islands - hiking volcanoes, surfing waves, and experiencing authentic Hawaiian culture...",
+    date: "January 15, 2024",
+    imageUrl: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
+    slug: "hawaii-winter-2024",
+    worthItRating: "9.5/10 - Perfect winter escape destination"
+  },
+  {
+    id: 6,
+    title: "London Calling: February in the British Capital",
+    excerpt: "Exploring London's historic landmarks, vibrant markets, and cozy pubs during the quiet winter season - fewer tourists and authentic experiences...",
+    date: "February 12, 2024",
+    imageUrl: "https://images.unsplash.com/photo-1524230572899-a752b3835840",
+    slug: "london-february-2024",
+    worthItRating: "8.5/10 - Great off-season city break"
+  },
+  {
+    id: 7,
+    title: "Costa Rican Adventure: December in the Rainforest",
+    excerpt: "Ending the year in Costa Rica's lush rainforests and pristine beaches - wildlife encounters, zip-lining adventures, and sustainable eco-tourism...",
+    date: "December 20, 2023",
+    imageUrl: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+    slug: "costa-rica-december-2023",
+    worthItRating: "10/10 - Perfect blend of adventure and relaxation"
   }
 ];
 
