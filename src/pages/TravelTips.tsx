@@ -1,54 +1,56 @@
+
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
+import { memo, lazy, Suspense } from "react";
 
-const TravelTips = () => {
+// Memoize content sections to prevent unnecessary re-renders
+const BookingResources = memo(() => (
+  <section className="mb-16">
+    <h2 className="text-2xl font-display text-primary mb-6">Recommended Booking Resources</h2>
+    <div className="grid gap-6">
+      <div className="bg-secondary/50 p-6 rounded-lg">
+        <h3 className="font-display text-lg text-primary mb-3">Ground Transportation with Omio</h3>
+        <p className="text-primary/80 mb-4">
+          For trains and buses across Europe and beyond, I highly recommend using Omio. It's my go-to platform because:
+        </p>
+        <ul className="space-y-3 text-primary/80">
+          <li>• Compare multiple transport options in one search</li>
+          <li>• Easy-to-use mobile tickets in the app</li>
+          <li>• Available in English with excellent customer support</li>
+          <li>• Often finds better deals than booking directly</li>
+        </ul>
+      </div>
+      
+      <div className="bg-secondary/50 p-6 rounded-lg">
+        <h3 className="font-display text-lg text-primary mb-3">Cruise Deals on VacationsToGo</h3>
+        <p className="text-primary/80 mb-4">
+          VacationsToGo is my secret weapon for finding incredible cruise deals. Here's why I love it:
+        </p>
+        <ul className="space-y-3 text-primary/80">
+          <li>• Up to 90% off last-minute cruise deals</li>
+          <li>• Comprehensive search across all major cruise lines</li>
+          <li>• Detailed port information and itineraries</li>
+          <li>• Price alerts for specific cruises or destinations</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+));
+
+const TravelTips = memo(() => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <div className="pt-24 pb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="container mx-auto px-4"
-        >
+      <div className="pt-20 pb-16">
+        <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-display text-primary mb-8">
               Travel Tips & Resources
             </h1>
             
             {/* Booking Resources Section */}
-            <section className="mb-16">
-              <h2 className="text-2xl font-display text-primary mb-6">Recommended Booking Resources</h2>
-              <div className="grid gap-6">
-                <div className="bg-secondary/50 p-6 rounded-lg">
-                  <h3 className="font-display text-lg text-primary mb-3">Ground Transportation with Omio</h3>
-                  <p className="text-primary/80 mb-4">
-                    For trains and buses across Europe and beyond, I highly recommend using Omio. It's my go-to platform because:
-                  </p>
-                  <ul className="space-y-3 text-primary/80">
-                    <li>• Compare multiple transport options in one search</li>
-                    <li>• Easy-to-use mobile tickets in the app</li>
-                    <li>• Available in English with excellent customer support</li>
-                    <li>• Often finds better deals than booking directly</li>
-                  </ul>
-                </div>
-                
-                <div className="bg-secondary/50 p-6 rounded-lg">
-                  <h3 className="font-display text-lg text-primary mb-3">Cruise Deals on VacationsToGo</h3>
-                  <p className="text-primary/80 mb-4">
-                    VacationsToGo is my secret weapon for finding incredible cruise deals. Here's why I love it:
-                  </p>
-                  <ul className="space-y-3 text-primary/80">
-                    <li>• Up to 90% off last-minute cruise deals</li>
-                    <li>• Comprehensive search across all major cruise lines</li>
-                    <li>• Detailed port information and itineraries</li>
-                    <li>• Price alerts for specific cruises or destinations</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
+            <BookingResources />
             
             {/* General Travel Tips Section */}
             <section className="mb-16">
@@ -130,7 +132,7 @@ const TravelTips = () => {
               <h2 className="text-2xl font-display text-primary mb-6">
                 Recommended Travel Cards
               </h2>
-              <div className="bg-secondary/50 p-8 rounded-lg">
+              <div className="bg-secondary/50 p-6 rounded-lg">
                 <div className="flex flex-col md:flex-row gap-8 items-center">
                   <div className="w-full md:w-2/3">
                     <h3 className="font-display text-xl text-primary mb-4">
@@ -157,16 +159,17 @@ const TravelTips = () => {
                       src="https://images.unsplash.com/photo-1472396961693-142e6e269027"
                       alt="Credit Card Benefits"
                       className="rounded-lg w-full h-48 object-cover"
+                      loading="lazy"
                     />
                   </div>
                 </div>
               </div>
             </section>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
-};
+});
 
 export default TravelTips;

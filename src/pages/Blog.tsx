@@ -1,5 +1,5 @@
 
-import { motion } from "framer-motion";
+import { memo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import AdSpace from "@/components/ads/AdSpace";
@@ -79,17 +79,46 @@ const blogPosts = [
   }
 ];
 
+// Memoized blog post component for better performance
+const BlogPostCard = memo(({ post }: { post: typeof blogPosts[0] }) => (
+  <article
+    key={post.id}
+    className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+  >
+    <Link to={`/blog/${post.slug}`} className="block">
+      <img
+        src={post.imageUrl}
+        alt={post.title}
+        className="w-full h-48 object-cover"
+        loading="lazy"
+      />
+      <div className="p-6">
+        <span className="text-sm text-accent font-medium">{post.date}</span>
+        <h2 className="text-xl font-display text-primary mt-2 mb-3">{post.title}</h2>
+        <p className="text-primary/80 text-sm line-clamp-3">{post.excerpt}</p>
+        <div className="mt-4 flex justify-between items-center">
+          <span className="inline-block text-accent font-medium">Read more →</span>
+          <span className="text-sm font-medium text-primary/70">{post.worthItRating}</span>
+        </div>
+      </div>
+    </Link>
+  </article>
+));
+
 const Blog = () => {
+  // Preload images when component mounts
+  useEffect(() => {
+    blogPosts.forEach(post => {
+      const img = new Image();
+      img.src = post.imageUrl;
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 py-16 max-w-5xl"
-      >
+      <div className="container mx-auto px-4 py-16 max-w-5xl">
         <h1 className="text-4xl font-display text-primary mb-8 text-center">Travel Stories</h1>
         
         {/* Top banner ad */}
@@ -97,38 +126,15 @@ const Blog = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {blogPosts.map((post) => (
-            <motion.article
-              key={post.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            >
-              <Link to={`/blog/${post.slug}`}>
-                <img
-                  src={post.imageUrl}
-                  alt={post.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <span className="text-sm text-accent font-medium">{post.date}</span>
-                  <h2 className="text-xl font-display text-primary mt-2 mb-3">{post.title}</h2>
-                  <p className="text-primary/80 text-sm line-clamp-3">{post.excerpt}</p>
-                  <div className="mt-4 flex justify-between items-center">
-                    <span className="inline-block text-accent font-medium">Read more →</span>
-                    <span className="text-sm font-medium text-primary/70">{post.worthItRating}</span>
-                  </div>
-                </div>
-              </Link>
-            </motion.article>
+            <BlogPostCard key={post.id} post={post} />
           ))}
         </div>
         
         {/* Bottom banner ad */}
         <AdSpace location="blog-bottom" className="w-full h-[90px] mt-8" />
-      </motion.div>
+      </div>
     </div>
   );
 };
 
-export default Blog;
+export default memo(Blog);

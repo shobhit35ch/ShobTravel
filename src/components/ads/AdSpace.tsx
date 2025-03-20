@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
 
@@ -15,8 +15,9 @@ type AdSpaceJoin = {
   ads: Ad[];
 };
 
-const AdSpace = ({ location, className = "" }: AdSpaceProps) => {
+const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
   const [adData, setAdData] = useState<Ad | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadAd = async () => {
@@ -34,22 +35,43 @@ const AdSpace = ({ location, className = "" }: AdSpaceProps) => {
 
         if (adSpace?.ads?.[0]) {
           setAdData(adSpace.ads[0]);
-          // Track impression
-          await supabase.rpc('track_ad_impression', {
-            ad_id: adSpace.ads[0].id
-          });
+          // Track impression in background task
+          setTimeout(() => {
+            supabase.rpc('track_ad_impression', {
+              ad_id: adSpace.ads[0].id
+            }).catch(err => console.error('Error tracking impression:', err));
+          }, 100);
         }
       } catch (error) {
         console.error('Error loading ad:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     loadAd();
   }, [location]);
 
+  if (isLoading) {
+    return <div className={`ad-space ${className} bg-gray-100 animate-pulse`} />;
+  }
+
   if (!adData) {
     return <div className={`ad-space ${className}`} />;
   }
+
+  const handleClick = async () => {
+    try {
+      // Track click in background
+      setTimeout(() => {
+        supabase.rpc('track_ad_click', {
+          ad_id: adData.id
+        }).catch(err => console.error('Error tracking click:', err));
+      }, 0);
+    } catch (error) {
+      console.error('Error tracking click:', error);
+    }
+  };
 
   return (
     <div className={`ad-space ${className}`}>
@@ -57,24 +79,17 @@ const AdSpace = ({ location, className = "" }: AdSpaceProps) => {
         href={adData.destination_url}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={async () => {
-          try {
-            await supabase.rpc('track_ad_click', {
-              ad_id: adData.id
-            });
-          } catch (error) {
-            console.error('Error tracking click:', error);
-          }
-        }}
+        onClick={handleClick}
       >
         <img 
           src={adData.image_url} 
           alt={adData.alt_text || 'Advertisement'} 
           className="w-full h-full object-cover"
+          loading="lazy"
         />
       </a>
     </div>
   );
-};
+});
 
 export default AdSpace;
