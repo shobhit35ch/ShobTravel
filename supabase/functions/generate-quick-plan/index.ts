@@ -1,4 +1,3 @@
-
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
@@ -15,12 +14,14 @@ serve(async (req) => {
   try {
     const { destination, duration, preferences, budget } = await req.json();
 
-    // TODO: Implement AI trip planning logic here
-    // For now, we'll return a success response
+    // This function is now being replaced by the send-contact-email function
+    // We're keeping this file in case it's referenced elsewhere, but the
+    // functionality has moved to the contact form processing
+    
     return new Response(
       JSON.stringify({ 
         success: true,
-        message: "Plan generated successfully" 
+        message: "Inquiry received successfully" 
       }),
       { 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },

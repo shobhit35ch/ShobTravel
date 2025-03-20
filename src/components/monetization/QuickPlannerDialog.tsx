@@ -29,15 +29,25 @@ export const QuickPlannerDialog = () => {
     setIsLoading(true);
     
     try {
-      const { data, error } = await supabase.functions.invoke('generate-quick-plan', {
-        body: formData
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          firstName: "Travel Inquiry",
+          lastName: "",
+          email: "traveler@example.com",
+          phone: "",
+          message: `New Travel Inquiry:
+Destination: ${formData.destination}
+Trip Duration: ${formData.duration}
+Budget Range: ${formData.budget}
+Travel Preferences: ${formData.preferences}`
+        }
       });
 
       if (error) throw error;
       
       toast({
-        title: "Plan Generated!",
-        description: "Check your email for your personalized quick travel plan.",
+        title: "Request Received!",
+        description: "Thank you for your travel inquiry. I'll be in touch shortly with personalized recommendations.",
       });
 
       setFormData({
@@ -47,10 +57,10 @@ export const QuickPlannerDialog = () => {
         budget: ""
       });
     } catch (error) {
-      console.error("Error generating plan:", error);
+      console.error("Error sending inquiry:", error);
       toast({
         title: "Error",
-        description: "There was a problem generating your plan. Please try again.",
+        description: "There was a problem sending your inquiry. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -72,17 +82,17 @@ export const QuickPlannerDialog = () => {
     <Dialog>
       <DialogTrigger asChild>
         <button className="bg-secondary/80 px-6 py-3 rounded-full text-primary hover:bg-secondary/60 transition-colors">
-          Get Quick Plan
+          Request Vacation Planning Help
         </button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Quick Trip Planner</DialogTitle>
+          <DialogTitle>Tell Me About Your Dream Vacation</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <div className="space-y-2">
             <label htmlFor="destination" className="text-sm font-medium">
-              Destination
+              Where Would You Like to Go?
             </label>
             <Input
               id="destination"
@@ -96,7 +106,7 @@ export const QuickPlannerDialog = () => {
           </div>
           <div className="space-y-2">
             <label htmlFor="duration" className="text-sm font-medium">
-              Trip Duration
+              How Long Is Your Trip?
             </label>
             <Input
               id="duration"
@@ -110,7 +120,7 @@ export const QuickPlannerDialog = () => {
           </div>
           <div className="space-y-2">
             <label htmlFor="budget" className="text-sm font-medium">
-              Budget Range
+              What's Your Budget Range?
             </label>
             <Input
               id="budget"
@@ -124,7 +134,7 @@ export const QuickPlannerDialog = () => {
           </div>
           <div className="space-y-2">
             <label htmlFor="preferences" className="text-sm font-medium">
-              Travel Preferences
+              What Are You Looking For in This Trip?
             </label>
             <Textarea
               id="preferences"
@@ -133,7 +143,7 @@ export const QuickPlannerDialog = () => {
               onChange={handleChange}
               required
               disabled={isLoading}
-              placeholder="Tell us about your interests (e.g., food, culture, adventure)"
+              placeholder="Tell me about your interests (e.g., food, culture, adventure, relaxation)"
               className="min-h-[100px]"
             />
           </div>
@@ -145,10 +155,10 @@ export const QuickPlannerDialog = () => {
             {isLoading ? (
               <>
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Generating Plan...
+                Sending Inquiry...
               </>
             ) : (
-              'Generate Quick Plan'
+              'Send Vacation Inquiry'
             )}
           </button>
         </form>
