@@ -129,7 +129,7 @@ const Blog = () => {
       blogPosts.slice(4).forEach(post => {
         const img = new Image();
         img.src = post.imageUrl;
-        img.importance = "low";
+        // Removed importance property as it's not supported
       });
       
       // Load all visible posts first

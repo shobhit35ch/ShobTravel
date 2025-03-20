@@ -9,11 +9,6 @@ interface AdSpaceProps {
 }
 
 type Ad = Database['public']['Tables']['ads']['Row'];
-type AdSpaceJoin = {
-  id: string;
-  current_ad_id: string | null;
-  ads: Ad[];
-};
 
 const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
   const [adData, setAdData] = useState<Ad | null>(null);
@@ -51,32 +46,28 @@ const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
         } else {
           console.log('No direct ad found, falling back to ad space lookup');
           // Fallback to looking up ad space
-          try {
-            const { data: adSpace, error } = await supabase
-              .from('ad_campaigns')
-              .select(`
-                id,
-                ads (*)
-              `)
-              .eq('active', true)
-              .limit(1)
-              .maybeSingle();
+          const { data: adSpace, error } = await supabase
+            .from('ad_campaigns')
+            .select(`
+              id,
+              ads (*)
+            `)
+            .eq('active', true)
+            .limit(1)
+            .maybeSingle();
 
-            if (adSpace?.ads?.[0]) {
-              setAdData(adSpace.ads[0]);
-              // Track impression in background
-              setTimeout(() => {
-                try {
-                  supabase.rpc('track_ad_impression', {
-                    ad_id: adSpace.ads[0].id
-                  });
-                } catch (err) {
-                  console.error('Error tracking impression:', err);
-                }
-              }, 100);
-            }
-          } catch (spaceError) {
-            console.error('Error in fallback ad lookup:', spaceError);
+          if (adSpace?.ads?.[0]) {
+            setAdData(adSpace.ads[0]);
+            // Track impression in background
+            setTimeout(() => {
+              try {
+                supabase.rpc('track_ad_impression', {
+                  ad_id: adSpace.ads[0].id
+                });
+              } catch (err) {
+                console.error('Error tracking impression:', err);
+              }
+            }, 100);
           }
         }
       } catch (error) {
