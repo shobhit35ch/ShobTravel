@@ -72,7 +72,7 @@ const blogPosts = [
     id: 7,
     title: "Costa Rican Adventure: December in the Rainforest",
     excerpt: "Ending the year in Costa Rica's lush rainforests and pristine beaches - wildlife encounters, zip-lining adventures, and sustainable eco-tourism...",
-    date: "December 20, 2023",
+    date: "December 20, 2024",
     imageUrl: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
     slug: "costa-rica-december-2023",
     worthItRating: "10/10 - Perfect blend of adventure and relaxation"

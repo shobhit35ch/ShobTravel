@@ -227,7 +227,7 @@ const blogPosts = {
   },
   "costa-rica-december-2023": {
     title: "Costa Rican Adventure: December in the Rainforest",
-    date: "December 20, 2023",
+    date: "December 20, 2024",
     content: `
       Ending the year surrounded by Costa Rica's lush rainforests and wildlife was exactly the reset I needed. December, just at the start of the dry season, offered the perfect balance of good weather and vibrant landscapes.
 
