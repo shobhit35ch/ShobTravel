@@ -1,18 +1,106 @@
+
+import { lazy, Suspense, memo } from "react";
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
 import { motion } from "framer-motion";
 import { Mountain, TreeDeciduous, Tent, Landmark } from "lucide-react";
 
+// Lazy-load the Hero component since it's a large visual element
+const Hero = lazy(() => import("@/components/Hero"));
+
+// Optimize adventure card with memoization
+const AdventureCard = memo(({ 
+  image, 
+  icon: Icon, 
+  location, 
+  title, 
+  description 
+}: { 
+  image: string | null; 
+  icon: any; 
+  location: string; 
+  title: string; 
+  description: string;
+}) => (
+  <motion.div
+    whileHover={{ y: -5 }}
+    className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300"
+  >
+    <div className="aspect-video overflow-hidden">
+      {image ? (
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <div className="w-full h-full bg-accent/20" />
+      )}
+    </div>
+    <div className="p-6">
+      <div className="flex items-center gap-2 mb-3">
+        <Icon className="h-5 w-5 text-accent" />
+        <span className="text-sm font-medium text-accent">{location}</span>
+      </div>
+      <h3 className="font-display text-2xl text-primary mb-2">{title}</h3>
+      <p className="text-primary/70">{description}</p>
+    </div>
+  </motion.div>
+));
+
 const Index = () => {
+  const adventures = [
+    {
+      image: "/lovable-uploads/05d07f01-1fcb-4671-ae21-0ad4391dcec5.png",
+      icon: Landmark,
+      location: "Rome, Italy",
+      title: "Rome: Where History Meets Modern Magic",
+      description: "Discover the eternal city's iconic fountains, ancient ruins, and vibrant street life. Every corner tells a story! 🏛️ #WhenInRome"
+    },
+    {
+      image: "/lovable-uploads/230e8e59-f044-442a-9e84-f783643253eb.png",
+      icon: Mountain,
+      location: "Alberta, Canada",
+      title: "Banff: Where TikTok Dreams Come True",
+      description: "Turquoise lakes, mountain views, and endless Instagram spots. Trust me, your feed needs this. 🏔️ #nofilterneeded"
+    },
+    {
+      image: null,
+      icon: Mountain,
+      location: "Switzerland",
+      title: "Grindelwald: Living Your Main Character Energy",
+      description: "POV: You're in a Swiss fairy tale with epic mountain trails and cozy chalets. The vibes? Immaculate. ✨ #swissalps"
+    },
+    {
+      image: null,
+      icon: TreeDeciduous,
+      location: "Italy",
+      title: "Lake Como: Not Your Regular Lake Day",
+      description: "Fancy boats, historic villas, and that Italian lifestyle you've been dreaming about. Major flex incoming. 🇮🇹 #dolcevita"
+    },
+    {
+      image: null,
+      icon: Tent,
+      location: "Nevada, USA",
+      title: "Red Rocks: Beyond Vegas Vibes",
+      description: "Swap the slots for sunset climbs and desert camping. The real Vegas experience no one talks about. 🏜️ #outdoorvibes"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <Hero />
+      
+      <Suspense fallback={<div className="h-screen bg-gray-100" />}>
+        <Hero />
+      </Suspense>
       
       <motion.section
         id="latest-adventures"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ delay: 0.2 }}
         className="container mx-auto px-4 py-32"
       >
@@ -22,103 +110,16 @@ const Index = () => {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {/* Rome Card */}
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <div className="aspect-video overflow-hidden">
-                <img
-                  src="/lovable-uploads/05d07f01-1fcb-4671-ae21-0ad4391dcec5.png"
-                  alt="Trevi Fountain, Rome"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Landmark className="h-5 w-5 text-accent" />
-                  <span className="text-sm font-medium text-accent">Rome, Italy</span>
-                </div>
-                <h3 className="font-display text-2xl text-primary mb-2">Rome: Where History Meets Modern Magic</h3>
-                <p className="text-primary/70">Discover the eternal city's iconic fountains, ancient ruins, and vibrant street life. Every corner tells a story! 🏛️ #WhenInRome</p>
-              </div>
-            </motion.div>
-
-            {/* Banff Card */}
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <div className="aspect-video overflow-hidden">
-                <img
-                  src="/lovable-uploads/230e8e59-f044-442a-9e84-f783643253eb.png"
-                  alt="Moraine Lake, Banff"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Mountain className="h-5 w-5 text-accent" />
-                  <span className="text-sm font-medium text-accent">Alberta, Canada</span>
-                </div>
-                <h3 className="font-display text-2xl text-primary mb-2">Banff: Where TikTok Dreams Come True</h3>
-                <p className="text-primary/70">Turquoise lakes, mountain views, and endless Instagram spots. Trust me, your feed needs this. 🏔️ #nofilterneeded</p>
-              </div>
-            </motion.div>
-
-            {/* Grindelwald Card */}
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <div className="aspect-video overflow-hidden">
-                <div className="w-full h-full bg-accent/20" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Mountain className="h-5 w-5 text-accent" />
-                  <span className="text-sm font-medium text-accent">Switzerland</span>
-                </div>
-                <h3 className="font-display text-2xl text-primary mb-2">Grindelwald: Living Your Main Character Energy</h3>
-                <p className="text-primary/70">POV: You're in a Swiss fairy tale with epic mountain trails and cozy chalets. The vibes? Immaculate. ✨ #swissalps</p>
-              </div>
-            </motion.div>
-
-            {/* Lake Como Card */}
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <div className="aspect-video overflow-hidden">
-                <div className="w-full h-full bg-accent/20" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <TreeDeciduous className="h-5 w-5 text-accent" />
-                  <span className="text-sm font-medium text-accent">Italy</span>
-                </div>
-                <h3 className="font-display text-2xl text-primary mb-2">Lake Como: Not Your Regular Lake Day</h3>
-                <p className="text-primary/70">Fancy boats, historic villas, and that Italian lifestyle you've been dreaming about. Major flex incoming. 🇮🇹 #dolcevita</p>
-              </div>
-            </motion.div>
-
-            {/* Red Rocks Card */}
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <div className="aspect-video overflow-hidden">
-                <div className="w-full h-full bg-accent/20" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Tent className="h-5 w-5 text-accent" />
-                  <span className="text-sm font-medium text-accent">Nevada, USA</span>
-                </div>
-                <h3 className="font-display text-2xl text-primary mb-2">Red Rocks: Beyond Vegas Vibes</h3>
-                <p className="text-primary/70">Swap the slots for sunset climbs and desert camping. The real Vegas experience no one talks about. 🏜️ #outdoorvibes</p>
-              </div>
-            </motion.div>
+            {adventures.map((adventure, index) => (
+              <AdventureCard 
+                key={index}
+                image={adventure.image}
+                icon={adventure.icon}
+                location={adventure.location}
+                title={adventure.title}
+                description={adventure.description}
+              />
+            ))}
           </div>
         </div>
       </motion.section>
@@ -126,4 +127,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default memo(Index);

@@ -1,5 +1,5 @@
 
-import { memo, useEffect } from "react";
+import { memo, useEffect, useState, useCallback, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import AdSpace from "@/components/ads/AdSpace";
@@ -83,7 +83,7 @@ const blogPosts = [
 const BlogPostCard = memo(({ post }: { post: typeof blogPosts[0] }) => (
   <article
     key={post.id}
-    className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+    className="bg-white rounded-lg overflow-hidden shadow-lg"
   >
     <Link to={`/blog/${post.slug}`} className="block">
       <img
@@ -91,6 +91,7 @@ const BlogPostCard = memo(({ post }: { post: typeof blogPosts[0] }) => (
         alt={post.title}
         className="w-full h-48 object-cover"
         loading="lazy"
+        decoding="async"
       />
       <div className="p-6">
         <span className="text-sm text-accent font-medium">{post.date}</span>
@@ -105,14 +106,61 @@ const BlogPostCard = memo(({ post }: { post: typeof blogPosts[0] }) => (
   </article>
 ));
 
+// Memoize the AdSpace components
+const TopBannerAd = memo(() => (
+  <AdSpace location="blog-top" className="w-full h-[90px] mb-8" />
+));
+
+const BottomBannerAd = memo(() => (
+  <AdSpace location="blog-bottom" className="w-full h-[90px] mt-8" />
+));
+
 const Blog = () => {
-  // Preload images when component mounts
+  const [visiblePosts, setVisiblePosts] = useState(blogPosts.slice(0, 4));
+  
+  // Preload images with lower priority
   useEffect(() => {
-    blogPosts.forEach(post => {
-      const img = new Image();
-      img.src = post.imageUrl;
-    });
+    let isMounted = true;
+    
+    const preloadImages = () => {
+      if (!isMounted) return;
+      
+      // Preload remaining images after initial render
+      blogPosts.slice(4).forEach(post => {
+        const img = new Image();
+        img.src = post.imageUrl;
+        img.importance = "low";
+      });
+      
+      // Load all visible posts first
+      blogPosts.slice(0, 4).forEach(post => {
+        const img = new Image();
+        img.src = post.imageUrl;
+      });
+    };
+    
+    // Delay preloading to prioritize initial render
+    const timerId = setTimeout(preloadImages, 1000);
+    
+    return () => {
+      isMounted = false;
+      clearTimeout(timerId);
+    };
   }, []);
+
+  // Load more posts when user scrolls near bottom
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+        if (visiblePosts.length < blogPosts.length) {
+          setVisiblePosts(blogPosts.slice(0, visiblePosts.length + 2));
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [visiblePosts]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -122,16 +170,16 @@ const Blog = () => {
         <h1 className="text-4xl font-display text-primary mb-8 text-center">Travel Stories</h1>
         
         {/* Top banner ad */}
-        <AdSpace location="blog-top" className="w-full h-[90px] mb-8" />
+        <TopBannerAd />
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {blogPosts.map((post) => (
+          {visiblePosts.map((post) => (
             <BlogPostCard key={post.id} post={post} />
           ))}
         </div>
         
         {/* Bottom banner ad */}
-        <AdSpace location="blog-bottom" className="w-full h-[90px] mt-8" />
+        <BottomBannerAd />
       </div>
     </div>
   );
