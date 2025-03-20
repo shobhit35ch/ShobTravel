@@ -33,7 +33,7 @@ const Destinations = () => {
         { name: "Florence", description: "Immersed in Renaissance art and Tuscan culture" },
         { name: "Venice", description: "Navigated the romantic canals and historic streets" }
       ],
-      imageUrl: "/placeholder.svg"
+      imageUrl: "/lovable-uploads/05d07f01-1fcb-4671-ae21-0ad4391dcec5.png"
     },
     {
       id: "united-states",
@@ -56,6 +56,17 @@ const Destinations = () => {
         { name: "Reykjavik", description: "Discovered the world's northernmost capital" }
       ],
       imageUrl: "/lovable-uploads/a0c8d7e6-a4a6-4e47-913b-d212f9ade26d.png"
+    },
+    {
+      id: "guatemala",
+      country: "Guatemala",
+      description: "Explored stunning landscapes and vibrant culture",
+      places: [
+        { name: "Lake Atitlan", description: "Stunning lake surrounded by volcanoes and Mayan villages" },
+        { name: "Panajachel", description: "Gateway town to Lake Atitlan with local markets" },
+        { name: "Casa Verapaz", description: "Beautiful accommodations with amazing lake views" }
+      ],
+      imageUrl: "/lovable-uploads/2be0e9f8-1ba3-4f39-b815-8e3a3122348d.png"
     }
   ];
 
@@ -72,6 +83,36 @@ const Destinations = () => {
         { name: "Antigua", description: "Colonial city surrounded by volcanoes" },
         { name: "Lake Atitlan", description: "Stunning lake with traditional Mayan villages" },
         { name: "Tikal", description: "Ancient Mayan city in the rainforest" }
+      ],
+      imageUrl: "/placeholder.svg"
+    },
+    {
+      country: "France",
+      description: "Looking forward to experiencing French cuisine and culture",
+      places: [
+        { name: "Paris", description: "The city of lights with iconic architecture" },
+        { name: "French Riviera", description: "Beautiful Mediterranean coastline" },
+        { name: "Provence", description: "Picturesque countryside and lavender fields" }
+      ],
+      imageUrl: "/placeholder.svg"
+    },
+    {
+      country: "Portugal",
+      description: "Excited to explore charming cities and coastal landscapes",
+      places: [
+        { name: "Lisbon", description: "Historic city with colorful streets and trams" },
+        { name: "Porto", description: "Riverside city famous for port wine" },
+        { name: "Algarve", description: "Stunning beaches and dramatic cliffs" }
+      ],
+      imageUrl: "/placeholder.svg"
+    },
+    {
+      country: "Spain",
+      description: "Anticipating vibrant culture, architecture, and cuisine",
+      places: [
+        { name: "Barcelona", description: "Gaudi's masterpieces and Mediterranean beaches" },
+        { name: "Madrid", description: "The capital with world-class museums and food" },
+        { name: "Seville", description: "Andalusian charm with Moorish influences" }
       ],
       imageUrl: "/placeholder.svg"
     }
