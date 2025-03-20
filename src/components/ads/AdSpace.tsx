@@ -22,7 +22,7 @@ const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
   useEffect(() => {
     const loadAd = async () => {
       try {
-        const { data: adSpace } = await supabase
+        const { data: adSpace, error } = await supabase
           .from('ad_spaces')
           .select(`
             id,
@@ -31,15 +31,24 @@ const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
           `)
           .eq('location', location)
           .eq('active', true)
-          .maybeSingle() as { data: AdSpaceJoin | null };
+          .maybeSingle() as { data: AdSpaceJoin | null, error: any };
+
+        if (error) {
+          console.error('Error loading ad:', error);
+          return;
+        }
 
         if (adSpace?.ads?.[0]) {
           setAdData(adSpace.ads[0]);
-          // Track impression in background task
+          // Track impression in background
           setTimeout(() => {
-            supabase.rpc('track_ad_impression', {
-              ad_id: adSpace.ads[0].id
-            }).catch(err => console.error('Error tracking impression:', err));
+            try {
+              supabase.rpc('track_ad_impression', {
+                ad_id: adSpace.ads[0].id
+              });
+            } catch (err) {
+              console.error('Error tracking impression:', err);
+            }
           }, 100);
         }
       } catch (error) {
@@ -60,17 +69,17 @@ const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
     return <div className={`ad-space ${className}`} />;
   }
 
-  const handleClick = async () => {
-    try {
-      // Track click in background
-      setTimeout(() => {
+  const handleClick = () => {
+    // Track click in background
+    setTimeout(() => {
+      try {
         supabase.rpc('track_ad_click', {
           ad_id: adData.id
-        }).catch(err => console.error('Error tracking click:', err));
-      }, 0);
-    } catch (error) {
-      console.error('Error tracking click:', error);
-    }
+        });
+      } catch (err) {
+        console.error('Error tracking click:', err);
+      }
+    }, 0);
   };
 
   return (
