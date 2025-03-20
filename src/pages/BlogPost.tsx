@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -218,7 +219,7 @@ const BlogPost = () => {
           title={post.title}
           date={post.date}
         />
-        <BlogContent content={post.content} />
+        <BlogContent content={post.content} slug={slug} />
 
         <div className="mt-8 space-y-8">
           <AdSpace location="post-bottom" className="w-full h-[90px]" />
