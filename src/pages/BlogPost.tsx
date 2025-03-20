@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -65,22 +64,22 @@ const blogPosts = {
     title: "European Alpine Adventure: Italy, Switzerland, and Iceland",
     date: "June 15, 2024",
     content: `
-      A month-long journey through some of Europe's most breathtaking landscapes, combining the charm of Italian towns, the majesty of Swiss Alps, and the raw beauty of Iceland.
+      A month-long journey through some of Europe's most breathtaking landscapes, combining Italian charm, Swiss Alpine majesty, and Iceland's raw natural beauty.
 
-      Italy (2 weeks):
-      Starting in the Dolomites, I spent days hiking through the jagged peaks and enjoying authentic mountain refugios. The highlights included the Tre Cime di Lavaredo circuit and the charming town of Cortina d'Ampezzo. Later, I explored Lake Como, taking boats to picturesque villages and enjoying the Italian lake life.
+      Italy (10 days):
+      My Italian adventure began in Rome, exploring the ancient ruins of the Colosseum and Roman Forum, getting lost in the Vatican Museums, and tossing a coin into the Trevi Fountain. From there, I headed south to the island paradise of Capri, where the Blue Grotto and rugged coastline views took my breath away. Moving north, I spent time in sophisticated Milan, admiring the magnificent Duomo and indulging in aperitivo culture. The journey continued to the stunning Lake Como, where I explored charming lakeside villages like Bellagio and Varenna, enjoying boat rides on the crystal-clear waters with dramatic mountain backdrops.
 
-      Switzerland (1 week):
-      The Swiss portion of my trip centered around the Jungfrau region. Based in Lauterbrunnen, I witnessed the power of 72 waterfalls in the valley, took the train to Jungfraujoch - Top of Europe, and hiked the spectacular Eiger Trail. The Swiss efficiency and stunning Alpine views were unmatched.
+      Switzerland (10 days):
+      The Swiss portion of my trip centered around the Bernese Oberland region. Based in picturesque Interlaken between two lakes, I ventured to Grindelwald with its spectacular views of the Eiger North Face. The highlight was definitely Lauterbrunnen, a valley of 72 waterfalls that inspired Tolkien's Rivendell. I took cable cars up to mountain viewpoints, hiked alpine meadows filled with wildflowers, and experienced the remarkable Swiss efficiency with their integrated transportation system.
 
-      Iceland (1 week):
-      The grand finale in Iceland was a perfect contrast to the Alpine landscapes. I drove the Ring Road, experiencing the midnight sun, powerful waterfalls like Skógafoss and Seljalandsfoss, and the otherworldly landscapes of the Diamond Beach. The trip concluded with a relaxing dip in the Blue Lagoon.
+      Iceland (5 days):
+      The grand finale in Reykjavik, Iceland provided a perfect contrast to the Alpine landscapes. From this quirky capital city, I explored the famous Golden Circle with its powerful geysers and waterfalls, relaxed in geothermal hot springs, and witnessed the unique phenomenon of the midnight sun. The otherworldly landscapes of black sand beaches and massive glaciers made for an unforgettable conclusion to this European adventure.
 
       Key Takeaways:
-      - Each country offered a unique perspective on mountain landscapes
-      - Weather varied dramatically between locations
-      - Public transportation in Switzerland was exceptional
-      - Iceland's raw nature provided a perfect contrast to the cultivated Alpine regions
+      - Italy offered the perfect combination of history, cuisine, and lakeside relaxation
+      - Switzerland's Alpine scenery and outdoor activities were unmatched
+      - Iceland's unique geological features provided a complete change of pace
+      - The entire journey offered incredible diversity in landscapes and experiences
     `,
     imageUrl: "https://images.unsplash.com/photo-1501854140801-50d01698950b"
   },
