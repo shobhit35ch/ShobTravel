@@ -6,6 +6,15 @@ import AdSpace from "@/components/ads/AdSpace";
 
 const blogPosts = [
   {
+    id: 0,
+    title: "Full Send to Lake Atitlan: Guatemala's Hidden Paradise",
+    excerpt: "From Instagram reels to real life - exploring the stunning Lake Atitlan with friends on a budget jet-skiing adventure...",
+    date: "March 17, 2024",
+    imageUrl: "https://images.unsplash.com/photo-1526392060635-9d6019884377?q=80&w=1470&auto=format&fit=crop",
+    slug: "guatemala-lake-atitlan-2024",
+    worthItRating: "10/10 - Budget paradise with unreal views"
+  },
+  {
     id: 1,
     title: "Memorial Weekend Adventure: Discovering Banff's Natural Wonders",
     excerpt: "A long weekend journey through the Canadian Rockies, featuring stunning lakes, majestic mountains, and unforgettable hiking trails...",

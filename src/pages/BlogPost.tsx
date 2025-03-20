@@ -7,6 +7,32 @@ import { BlogHeader } from "@/components/blog/BlogHeader";
 import { BlogContent } from "@/components/blog/BlogContent";
 
 const blogPosts = {
+  "guatemala-lake-atitlan-2024": {
+    title: "Full Send to Lake Atitlan: Guatemala's Hidden Paradise",
+    date: "March 17, 2024",
+    content: `
+      Originally I saw a bunch of reels online about this insane looking lake in Guatemala, and decided to full it send it with 2 of my buddies. This place is Lake Atitlan, and boy was it completely worth it.
+
+      For a lot of the trips that I have taken, its really just been viewing it on reels or searching up cool views with either mountains/lakes, and full sending it. Ironically I did have a buddy who did a whole week last year, and he said he had a complete blast, so that basically pushed me into booking flights.
+
+      I ended up using a mixture of amex and bilt points on this trip, so the total for a round trip ended up being only 87 USD from IAD - GUA round trip. We went March 13-17, and im actually writing this while in the gorgeous airbnb that we booked. I have heard lots of Antigua but because of PTO constraints, we actually are only in Lake Atitlan for this trip.
+
+      Now I want to address something that I was very nervous about coming here, safety. I have done some research prior and seen some posts claiming that it is very unsafe, but in my experience, I felt perfectly fine. Now, this is also my experience as a guy in my mid 20s with 3 of my buddies, and also my skin complexion isn't that different from the folks here lol, so I definitely DONT want to state this as a fact, but I felt very safe and calm here, just practice caution like with any new country.
+
+      Now, we did not go out in Guatemala City because our hotel driver advised against this, so there is something to note there, but the safety rating of lake atitlan is way higher than Guatemala City. We basically did one night at an airport hotel (because we landed in the night time) followed by a 3 hour drive to lake atitlan the next morning.
+
+      One thing for sure, this place is beauuuutiful, the views are just stunning, it felt a bit similar to Lake Como actually. Very calm water, and the weather was perfect. A local was saying that this area was prime summer season, and that adds up. We stayed at Casa Verapaz, which is near the main town of Panajachel.
+
+      In order to get around, you ride in these tuk tuks, basically rickshaws. Our first main day we headed down to the main town area and rented Jetskis, this is a must do. It was my first time jet-skiing, and I had the time of my life, I highly recommend this. Its so thrill seeking, especially with the insane view of the lake in the background, I think this was the #1 part of the trip.
+
+      We used a contact called Norris and messaged her on WhatsApp. Btw almost everything is done via WhatsApp to communicate for activities, so I highly suggest you have that downloaded, Ill attach her number and the others below.
+
+      Also, EVERYTHING is negotiable on this trip, make sure you speak somewhat basic spanish, otherwise you will be always overcharged. We got about 1 hour of the jet skis, with canoe and paddle boarding for 30 min each, for about $80 USD. Everything is also non chalant here, for example, no waivers or anything like that so if you have never jet skied before and are nervous like my friends were, watch a YouTube video or something.
+
+      The motto of this whole trip was "Fuck it", we just full sent everything.
+    `,
+    imageUrl: "https://images.unsplash.com/photo-1526392060635-9d6019884377?q=80&w=1470&auto=format&fit=crop"
+  },
   "banff-memorial-weekend-2024": {
     title: "Memorial Weekend Adventure: Discovering Banff's Natural Wonders",
     date: "May 30, 2024",
