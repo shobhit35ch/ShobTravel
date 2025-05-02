@@ -66,7 +66,7 @@ const Index = () => {
       description: "Turquoise lakes, mountain views, and endless Instagram spots. Trust me, your feed needs this. 🏔️ #nofilterneeded"
     },
     {
-      image: null,
+      image: "/lovable-uploads/657f7f48-e0f7-4a9c-b259-4639c6b2b466.png",
       icon: Mountain,
       location: "Switzerland",
       title: "Grindelwald: Living Your Main Character Energy",
