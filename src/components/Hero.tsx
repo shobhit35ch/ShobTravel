@@ -13,7 +13,7 @@ const Hero = memo(() => {
       <div
         className="absolute inset-0 z-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.1&auto=format&fit=crop&w=1920&q=75')`,
+          backgroundImage: `url('/lovable-uploads/2be0e9f8-1ba3-4f39-b815-8e3a3122348d.png')`,
         }}
       >
         <div className="absolute inset-0 bg-black/30" />
