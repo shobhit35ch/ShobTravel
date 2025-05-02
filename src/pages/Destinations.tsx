@@ -1,8 +1,6 @@
-
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import Map from "@/components/Map";
 import {
   Accordion,
   AccordionContent,
@@ -129,8 +127,6 @@ const Destinations = () => {
       >
         <div className="max-w-4xl mx-auto">
           <h1 className="font-display text-4xl text-primary mb-12">My Travel Map</h1>
-          
-          <Map visitedCountries={visitedCountries} />
           
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="visited">
