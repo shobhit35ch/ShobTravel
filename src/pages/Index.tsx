@@ -2,7 +2,7 @@
 import { lazy, Suspense, memo } from "react";
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
-import { Mountain, TreeDeciduous, Tent, Landmark } from "lucide-react";
+import { Mountain, TreeDeciduous, Tent, Landmark, Compass } from "lucide-react";
 
 // Lazy-load the Hero component since it's a large visual element
 const Hero = lazy(() => import("@/components/Hero"));
@@ -76,6 +76,13 @@ const Index = () => {
       location: "Switzerland",
       title: "Grindelwald: Living Your Main Character Energy",
       description: "POV: You're in a Swiss fairy tale with epic mountain trails and cozy chalets. The vibes? Immaculate. ✨ #swissalps"
+    },
+    {
+      image: "/lovable-uploads/0a7d72a8-4cde-4699-8415-86af428a1795.png",
+      icon: Compass,
+      location: "Guatemala",
+      title: "Full Send to Lake Atitlan",
+      description: "Volcanic views, crystal waters, and jungle vibes. This hidden gem needs to be on your bucket list ASAP. 🌋 #lakelife"
     },
     {
       image: null,
