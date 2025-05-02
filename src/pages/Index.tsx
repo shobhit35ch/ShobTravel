@@ -33,6 +33,11 @@ const AdventureCard = memo(({
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
           decoding="async"
+          style={{ 
+            imageRendering: "crisp-edges",
+            WebkitBackfaceVisibility: "hidden",
+            backfaceVisibility: "hidden" 
+          }}
         />
       ) : (
         <div className="w-full h-full bg-accent/20" />
