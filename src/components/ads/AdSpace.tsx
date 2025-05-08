@@ -46,8 +46,9 @@ const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
         } else {
           console.log('No direct ad found, falling back to ad space lookup');
           
+          // Simplified fallback to avoid type recursion issues
           try {
-            // First fetch an active campaign
+            // Get an active campaign first, without nesting queries
             const { data: campaignData } = await supabase
               .from('ad_campaigns')
               .select('id')
@@ -56,7 +57,7 @@ const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
               .single();
               
             if (campaignData?.id) {
-              // If we found an active campaign, get an ad from it
+              // Then get an ad from that campaign in a separate query
               const { data: adFromCampaign } = await supabase
                 .from('ads')
                 .select('*')
@@ -67,7 +68,8 @@ const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
                 
               if (adFromCampaign) {
                 setAdData(adFromCampaign);
-                // Track impression
+                
+                // Track impression separately
                 setTimeout(() => {
                   try {
                     supabase.rpc('track_ad_impression', {

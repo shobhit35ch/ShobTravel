@@ -92,7 +92,7 @@ const Index = () => {
       description: "Fancy boats, historic villas, and that Italian lifestyle you've been dreaming about. Major flex incoming. 🇮🇹 #dolcevita"
     },
     {
-      image: null,
+      image: "/lovable-uploads/23fa8958-0bc3-47d8-a42d-d07ca1eb5335.png",
       icon: Tent,
       location: "Nevada, USA",
       title: "Red Rocks: Beyond Vegas Vibes",
