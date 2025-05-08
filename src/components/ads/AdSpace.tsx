@@ -45,37 +45,42 @@ const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
           }, 100);
         } else {
           console.log('No direct ad found, falling back to ad space lookup');
-          // Fallback to looking up ad space - simplified to avoid type recursion issues
-          const { data: adSpaceData, error } = await supabase
-            .from('ad_campaigns')
-            .select('id, active')
-            .eq('active', true)
-            .limit(1)
-            .single();
-            
-          if (adSpaceData?.id) {
-            // If we found an active campaign, get an ad from it
-            const { data: adFromCampaign } = await supabase
-              .from('ads')
-              .select('*')
-              .eq('campaign_id', adSpaceData.id)
+          
+          try {
+            // First fetch an active campaign
+            const { data: campaignData } = await supabase
+              .from('ad_campaigns')
+              .select('id')
               .eq('active', true)
               .limit(1)
-              .maybeSingle();
+              .single();
               
-            if (adFromCampaign) {
-              setAdData(adFromCampaign);
-              // Track impression
-              setTimeout(() => {
-                try {
-                  supabase.rpc('track_ad_impression', {
-                    ad_id: adFromCampaign.id
-                  });
-                } catch (err) {
-                  console.error('Error tracking impression:', err);
-                }
-              }, 100);
+            if (campaignData?.id) {
+              // If we found an active campaign, get an ad from it
+              const { data: adFromCampaign } = await supabase
+                .from('ads')
+                .select('*')
+                .eq('campaign_id', campaignData.id)
+                .eq('active', true)
+                .limit(1)
+                .maybeSingle();
+                
+              if (adFromCampaign) {
+                setAdData(adFromCampaign);
+                // Track impression
+                setTimeout(() => {
+                  try {
+                    supabase.rpc('track_ad_impression', {
+                      ad_id: adFromCampaign.id
+                    });
+                  } catch (err) {
+                    console.error('Error tracking impression:', err);
+                  }
+                }, 100);
+              }
             }
+          } catch (fetchError) {
+            console.error('Error fetching campaign or ad:', fetchError);
           }
         }
       } catch (error) {
