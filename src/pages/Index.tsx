@@ -85,7 +85,7 @@ const Index = () => {
       description: "Volcanic views, crystal waters, and jungle vibes. This hidden gem needs to be on your bucket list ASAP. 🌋 #lakelife"
     },
     {
-      image: null,
+      image: "/lovable-uploads/79cfbd3b-0e2d-40e5-a010-bd2c7e085db9.png",
       icon: TreeDeciduous,
       location: "Italy",
       title: "Lake Como: Not Your Regular Lake Day",
