@@ -29,7 +29,7 @@ const blogPosts = {
 
       Also, EVERYTHING is negotiable on this trip, make sure you speak somewhat basic spanish, otherwise you will be always overcharged. We got about 1 hour of the jet skis, with canoe and paddle boarding for 30 min each, for about $80 USD. Everything is also non chalant here, for example, no waivers or anything like that so if you have never jet skied before and are nervous like my friends were, watch a YouTube video or something.
 
-      The motto of this whole trip was "Fuck it", we just full sent everything.
+      The motto of this whole trip was "F*** it", we just full sent everything.
     `,
     imageUrl: "https://images.unsplash.com/photo-1526392060635-9d6019884377?q=80&w=1470&auto=format&fit=crop"
   },

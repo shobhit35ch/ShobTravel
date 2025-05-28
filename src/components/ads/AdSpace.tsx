@@ -1,14 +1,20 @@
 
 import { useEffect, useState, memo, useRef } from 'react';
 import { supabase } from "@/integrations/supabase/client";
-import type { Database } from "@/integrations/supabase/types";
 
 interface AdSpaceProps {
   location: string;
   className?: string;
 }
 
-type Ad = Database['public']['Tables']['ads']['Row'];
+interface Ad {
+  id: string;
+  image_url: string;
+  destination_url: string;
+  alt_text: string | null;
+  active: boolean;
+  campaign_id: string | null;
+}
 
 const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
   const [adData, setAdData] = useState<Ad | null>(null);
@@ -16,74 +22,26 @@ const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
   const adLoaded = useRef(false);
 
   useEffect(() => {
-    // Prevent multiple load attempts
     if (adLoaded.current) return;
     
     const loadAd = async () => {
       try {
         adLoaded.current = true;
         
-        // First try to get a direct ad for this location
-        const { data: ad, error: adError } = await supabase
+        const { data: ads } = await supabase
           .from('ads')
-          .select('*')
+          .select('id, image_url, destination_url, alt_text, active, campaign_id')
           .eq('active', true)
-          .limit(1)
-          .maybeSingle();
+          .limit(1);
         
-        if (ad) {
+        if (ads && ads.length > 0) {
+          const ad = ads[0];
           setAdData(ad);
-          // Track impression in background
-          setTimeout(() => {
-            try {
-              supabase.rpc('track_ad_impression', {
-                ad_id: ad.id
-              });
-            } catch (err) {
-              console.error('Error tracking impression:', err);
-            }
-          }, 100);
-        } else {
-          console.log('No direct ad found, falling back to ad space lookup');
           
-          // Simplified fallback to avoid type recursion issues
-          try {
-            // Get an active campaign first, without nesting queries
-            const { data: campaignData } = await supabase
-              .from('ad_campaigns')
-              .select('id')
-              .eq('active', true)
-              .limit(1)
-              .single();
-              
-            if (campaignData?.id) {
-              // Then get an ad from that campaign in a separate query
-              const { data: adFromCampaign } = await supabase
-                .from('ads')
-                .select('*')
-                .eq('campaign_id', campaignData.id)
-                .eq('active', true)
-                .limit(1)
-                .maybeSingle();
-                
-              if (adFromCampaign) {
-                setAdData(adFromCampaign);
-                
-                // Track impression separately
-                setTimeout(() => {
-                  try {
-                    supabase.rpc('track_ad_impression', {
-                      ad_id: adFromCampaign.id
-                    });
-                  } catch (err) {
-                    console.error('Error tracking impression:', err);
-                  }
-                }, 100);
-              }
-            }
-          } catch (fetchError) {
-            console.error('Error fetching campaign or ad:', fetchError);
-          }
+          // Track impression
+          setTimeout(() => {
+            supabase.rpc('track_ad_impression', { ad_id: ad.id }).catch(console.error);
+          }, 100);
         }
       } catch (error) {
         console.error('Error loading ad:', error);
@@ -92,12 +50,11 @@ const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
       }
     };
 
-    // Delay ad loading to prioritize core content
     setTimeout(loadAd, 300);
-  }, [location]); // Only reload if location changes
+  }, [location]);
 
   if (isLoading) {
-    return <div className={`ad-space ${className} bg-gray-100`} />; // Removed animate-pulse for better performance
+    return <div className={`ad-space ${className} bg-gray-100`} />;
   }
 
   if (!adData) {
@@ -105,15 +62,8 @@ const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
   }
 
   const handleClick = () => {
-    // Track click in background without blocking
     setTimeout(() => {
-      try {
-        supabase.rpc('track_ad_click', {
-          ad_id: adData.id
-        });
-      } catch (err) {
-        console.error('Error tracking click:', err);
-      }
+      supabase.rpc('track_ad_click', { ad_id: adData.id }).catch(console.error);
     }, 0);
   };
 
@@ -125,7 +75,6 @@ const AdSpace = memo(({ location, className = "" }: AdSpaceProps) => {
         rel="noopener noreferrer"
         onClick={handleClick}
       >
-        {/* Add loading="lazy" and decoding="async" for better performance */}
         <img 
           src={adData.image_url} 
           alt={adData.alt_text || 'Advertisement'} 
