@@ -12,6 +12,7 @@ interface PlannerFormData {
   duration: string;
   preferences: string;
   budget: string;
+  email: string;
 }
 
 export const QuickPlannerDialog = () => {
@@ -21,7 +22,8 @@ export const QuickPlannerDialog = () => {
     destination: "",
     duration: "",
     preferences: "",
-    budget: ""
+    budget: "",
+    email: ""
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,7 +35,7 @@ export const QuickPlannerDialog = () => {
         body: {
           firstName: "Travel Inquiry",
           lastName: "",
-          email: "traveler@example.com",
+          email: formData.email,
           phone: "",
           message: `New Travel Inquiry:
 Destination: ${formData.destination}
@@ -54,7 +56,8 @@ Travel Preferences: ${formData.preferences}`
         destination: "",
         duration: "",
         preferences: "",
-        budget: ""
+        budget: "",
+        email: ""
       });
     } catch (error) {
       console.error("Error sending inquiry:", error);
@@ -130,6 +133,21 @@ Travel Preferences: ${formData.preferences}`
               required
               disabled={isLoading}
               placeholder="e.g., $2000-3000"
+            />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="email" className="text-sm font-medium">
+              Your Email
+            </label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              disabled={isLoading}
+              placeholder="you@example.com"
             />
           </div>
           <div className="space-y-2">

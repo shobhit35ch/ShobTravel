@@ -15,12 +15,16 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const resend = new Resend("re_4iLKvT3s_5vxAHCzA4QnibpgSRLCm3KTC");
+    const apiKey = Deno.env.get("RESEND_API_KEY");
+    if (!apiKey) {
+      throw new Error("RESEND_API_KEY is not set");
+    }
+    const resend = new Resend(apiKey);
     const { firstName, lastName, email, phone, message } = await req.json();
 
     const emailResponse = await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: "Shobhitchoudhury1@gmail.com",
+      to: "shobhitchoudhury1@gmail.com",
       subject: "New Contact Form Submission",
       html: `
         <h2>New Contact Form Submission</h2>
