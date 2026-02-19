@@ -1,12 +1,60 @@
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import AdSpace from "@/components/ads/AdSpace";
 import { BackToBlog } from "@/components/blog/BackToBlog";
 import { BlogHeader } from "@/components/blog/BlogHeader";
 import { BlogContent } from "@/components/blog/BlogContent";
 
 const blogPosts = {
+  "japan-adventure-2025": {
+    title: "Japan: From Neon Lights to Ancient Temples",
+    date: "January 20, 2025",
+    content: `
+      Japan had been on my bucket list for years, and I finally made it happen in January 2025. Two weeks exploring the Land of the Rising Sun, and I can confidently say it exceeded every expectation I had. This country is an absolute masterpiece of contrast - ancient temples sitting peacefully next to neon-lit skyscrapers, serene gardens just steps away from the busiest crossings on earth.
+
+      Tokyo (5 days):
+      I started in Tokyo, and honestly, the sensory overload is REAL. Shibuya Crossing is everything you see in videos and more - standing at that intersection with hundreds of people crossing from every direction is something you just have to experience. I spent my first evening in Shinjuku, exploring the narrow alleyways of Golden Gai, where tiny bars (some seating only 6 people) serve drinks and incredible conversation.
+
+      Akihabara was a trip - the electric town is a paradise for tech and anime culture. Even if you're not into anime, the sheer scale of it is impressive. I also visited the Tsukiji Outer Market (the inner wholesale market moved to Toyosu) and had the freshest sushi of my life at 7 AM. The tuna melted in my mouth. Not exaggerating.
+
+      One of my favorite experiences was visiting TeamLab Borderless, the digital art museum. The immersive installations are genuinely mind-blowing. Also made it to the Meiji Shrine, which felt like stepping into another world - a peaceful forest right in the heart of Tokyo.
+
+      Day Trip to Mount Fuji:
+      Took the bullet train (Shinkansen) to Kawaguchiko for views of Mount Fuji. The Shinkansen itself is an experience - smooth, fast, and incredibly punctual. Fuji was partially covered in clouds when I arrived, but it cleared up in the afternoon for the most incredible sunset I've ever seen. The reflection of Fuji in Lake Kawaguchi at golden hour is forever burned into my memory.
+
+      Kyoto (4 days):
+      Kyoto is where Japan's soul lives. The Fushimi Inari shrine with its thousands of orange torii gates winding up the mountain was my favorite spot of the entire trip. I went early morning (6 AM) and had the upper trails almost entirely to myself. Kinkaku-ji (Golden Pavilion) was stunning, especially with the winter light reflecting off the gold leaf into the mirror pond.
+
+      I rented a bike for a day and explored the Arashiyama Bamboo Grove, the Philosopher's Path, and several smaller temples that don't make it onto most tourist itineraries. The bamboo grove is surreal - the sound of wind through the stalks is incredibly peaceful. I also tried a traditional tea ceremony in a 200-year-old tea house. The attention to detail and the mindfulness of the practice was deeply moving.
+
+      Osaka (3 days):
+      Osaka is where you go to EAT. The Dotonbori district at night is pure energy - neon signs, street food vendors, and the famous Glico Running Man sign. I tried takoyaki (octopus balls) from a street vendor and they were incredible. Also had okonomiyaki (savory pancakes) at a local spot where they cook it right in front of you on a griddle.
+
+      I visited Osaka Castle, explored the vibrant Shinsekai district, and spent an evening in the Namba area. The nightlife here is more relaxed than Tokyo but equally fun.
+
+      Budget Breakdown:
+      - Flights (IAD to NRT): Used 80,000 Amex points + $87 in taxes
+      - JR Pass (14-day): About $420 - absolutely worth it for unlimited bullet trains
+      - Accommodations: Mix of traditional ryokans ($80-150/night) and budget hotels ($50-70/night)
+      - Food: $30-50/day (eating like a king at this budget is easy in Japan)
+      - Activities & Transport: $20-30/day for local transit and attractions
+
+      Japan Tips:
+      - Get a Suica/Pasmo card immediately for seamless transit
+      - Download Google Translate with Japanese offline - it's a lifesaver
+      - Cash is still king in many places, especially smaller restaurants
+      - Convenience stores (7-Eleven, FamilyMart, Lawson) have genuinely good food
+      - Bow slightly when greeting people - it goes a long way
+      - Be quiet on trains - it's considered rude to talk loudly or on the phone
+      - Try an onsen (hot spring bath) at least once - it's a quintessential experience
+
+      Final Thoughts:
+      Japan is, hands down, one of the best trips I've ever taken. The culture, the food, the scenery, the people - everything comes together in a way that feels almost too perfect. If it's on your list, stop waiting and book it. You won't regret it.
+    `,
+    imageUrl: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1470&auto=format&fit=crop"
+  },
   "guatemala-lake-atitlan-2024": {
     title: "Full Send to Lake Atitlan: Guatemala's Hidden Paradise",
     date: "March 17, 2024",
@@ -320,17 +368,17 @@ const BlogPost = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
-      
+
       <motion.article
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 py-16 max-w-3xl"
+        className="container mx-auto px-4 pt-20 md:pt-24 pb-16 max-w-3xl flex-1"
       >
         <BackToBlog />
-        <BlogHeader 
+        <BlogHeader
           imageUrl={post.imageUrl}
           title={post.title}
           date={post.date}
@@ -341,6 +389,8 @@ const BlogPost = () => {
           <AdSpace location="post-bottom" className="w-full h-[90px]" />
         </div>
       </motion.article>
+
+      <Footer />
     </div>
   );
 };

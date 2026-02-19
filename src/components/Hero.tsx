@@ -9,7 +9,7 @@ const Hero = memo(() => {
   };
 
   return (
-    <div className="relative h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-[70vh] md:h-screen flex items-center justify-center overflow-hidden">
       <div
         className="absolute inset-0 z-0 bg-cover bg-center"
         style={{
@@ -25,15 +25,15 @@ const Hero = memo(() => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="font-display text-5xl md:text-7xl mb-6">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl mb-6">
             Explore the World
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
             Join me on a journey of discovery, adventure, and budget-friendly travel tips
           </p>
           <button
             onClick={scrollToAdventures}
-            className="inline-block bg-white text-primary px-8 py-3 rounded-full text-lg font-medium hover:bg-opacity-90 transition-all"
+            className="inline-block bg-white text-primary px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-medium hover:bg-opacity-90 transition-all"
           >
             Start Reading
           </button>

@@ -2,9 +2,19 @@
 import { memo, useEffect, useState, useCallback, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import AdSpace from "@/components/ads/AdSpace";
 
 const blogPosts = [
+  {
+    id: 8,
+    title: "Japan: From Neon Lights to Ancient Temples",
+    excerpt: "Two weeks exploring the Land of the Rising Sun - from Tokyo's electric Shibuya crossing to Kyoto's golden temples, Mount Fuji's majestic peak, and Osaka's legendary street food scene...",
+    date: "January 20, 2025",
+    imageUrl: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1470&auto=format&fit=crop",
+    slug: "japan-adventure-2025",
+    worthItRating: "10/10 - Absolute bucket list destination"
+  },
   {
     id: 0,
     title: "Full Send to Lake Atitlan: Guatemala's Hidden Paradise",
@@ -83,23 +93,25 @@ const blogPosts = [
 const BlogPostCard = memo(({ post }: { post: typeof blogPosts[0] }) => (
   <article
     key={post.id}
-    className="bg-white rounded-lg overflow-hidden shadow-lg"
+    className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
   >
     <Link to={`/blog/${post.slug}`} className="block">
-      <img
-        src={post.imageUrl}
-        alt={post.title}
-        className="w-full h-48 object-cover"
-        loading="lazy"
-        decoding="async"
-      />
-      <div className="p-6">
-        <span className="text-sm text-accent font-medium">{post.date}</span>
-        <h2 className="text-xl font-display text-primary mt-2 mb-3">{post.title}</h2>
+      <div className="aspect-video overflow-hidden">
+        <img
+          src={post.imageUrl}
+          alt={post.title}
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div className="p-4 sm:p-6">
+        <span className="text-xs sm:text-sm text-accent font-medium">{post.date}</span>
+        <h2 className="text-lg sm:text-xl font-display text-primary mt-2 mb-3">{post.title}</h2>
         <p className="text-primary/80 text-sm line-clamp-3">{post.excerpt}</p>
-        <div className="mt-4 flex justify-between items-center">
-          <span className="inline-block text-accent font-medium">Read more →</span>
-          <span className="text-sm font-medium text-primary/70">{post.worthItRating}</span>
+        <div className="mt-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+          <span className="inline-block text-accent font-medium text-sm">Read more →</span>
+          <span className="text-xs sm:text-sm font-medium text-primary/60">{post.worthItRating}</span>
         </div>
       </div>
     </Link>
@@ -117,31 +129,27 @@ const BottomBannerAd = memo(() => (
 
 const Blog = () => {
   const [visiblePosts, setVisiblePosts] = useState(blogPosts.slice(0, 4));
-  
+
   // Preload images with lower priority
   useEffect(() => {
     let isMounted = true;
-    
+
     const preloadImages = () => {
       if (!isMounted) return;
-      
-      // Preload remaining images after initial render
+
       blogPosts.slice(4).forEach(post => {
         const img = new Image();
         img.src = post.imageUrl;
-        // Removed importance property as it's not supported
       });
-      
-      // Load all visible posts first
+
       blogPosts.slice(0, 4).forEach(post => {
         const img = new Image();
         img.src = post.imageUrl;
       });
     };
-    
-    // Delay preloading to prioritize initial render
+
     const timerId = setTimeout(preloadImages, 1000);
-    
+
     return () => {
       isMounted = false;
       clearTimeout(timerId);
@@ -158,29 +166,39 @@ const Blog = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [visiblePosts]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
-      
-      <div className="container mx-auto px-4 py-16 max-w-5xl">
-        <h1 className="text-4xl font-display text-primary mb-8 text-center">Travel Stories</h1>
-        
+
+      <div className="container mx-auto px-4 pt-20 md:pt-24 pb-12 md:pb-16 max-w-5xl flex-1">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-display text-primary mb-6 md:mb-8 text-center">
+          Travel Stories
+        </h1>
+
         {/* Top banner ad */}
         <TopBannerAd />
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
           {visiblePosts.map((post) => (
             <BlogPostCard key={post.id} post={post} />
           ))}
         </div>
-        
+
+        {visiblePosts.length < blogPosts.length && (
+          <div className="text-center mt-8">
+            <p className="text-primary/50 text-sm">Scroll down for more stories...</p>
+          </div>
+        )}
+
         {/* Bottom banner ad */}
         <BottomBannerAd />
       </div>
+
+      <Footer />
     </div>
   );
 };

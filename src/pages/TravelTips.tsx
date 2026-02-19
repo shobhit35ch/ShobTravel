@@ -1,6 +1,7 @@
 
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { memo, lazy, Suspense } from "react";
 
 // Memoize content sections to prevent unnecessary re-renders
@@ -39,13 +40,13 @@ const BookingResources = memo(() => (
 
 const TravelTips = memo(() => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
-      
-      <div className="pt-20 pb-16">
+
+      <div className="pt-20 pb-16 flex-1">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-display text-primary mb-8">
+            <h1 className="text-3xl md:text-5xl font-display text-primary mb-8">
               Travel Tips & Resources
             </h1>
             
@@ -54,7 +55,7 @@ const TravelTips = memo(() => {
             
             {/* General Travel Tips Section */}
             <section className="mb-16">
-              <h2 className="text-2xl font-display text-primary mb-6">Essential Travel Tips</h2>
+              <h2 className="text-xl md:text-2xl font-display text-primary mb-6">Essential Travel Tips</h2>
               <div className="grid gap-6">
                 <div className="bg-secondary/50 p-6 rounded-lg">
                   <h3 className="font-display text-lg text-primary mb-3">Planning & Booking</h3>
@@ -91,7 +92,7 @@ const TravelTips = memo(() => {
             {/* Hot Take Section */}
             <section className="mb-16">
               <div className="bg-[#8B5CF6]/10 p-8 rounded-lg border-2 border-[#8B5CF6]/20">
-                <h2 className="text-2xl font-display text-[#8B5CF6] mb-4 flex items-center">
+                <h2 className="text-xl md:text-2xl font-display text-[#8B5CF6] mb-4 flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -129,7 +130,7 @@ const TravelTips = memo(() => {
             
             {/* Recommended Travel Cards Section */}
             <section className="mb-16">
-              <h2 className="text-2xl font-display text-primary mb-6">
+              <h2 className="text-xl md:text-2xl font-display text-primary mb-6">
                 Recommended Travel Cards
               </h2>
               <div className="bg-secondary/50 p-6 rounded-lg">
@@ -168,6 +169,8 @@ const TravelTips = memo(() => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 });

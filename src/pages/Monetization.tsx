@@ -1,6 +1,7 @@
 
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { Briefcase, Mail, Handshake, Camera, Globe } from "lucide-react";
 import { ServiceCard } from "@/components/monetization/ServiceCard";
 import { WhyWorkWithMe } from "@/components/monetization/WhyWorkWithMe";
@@ -56,10 +57,10 @@ const Monetization = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
-      
-      <div className="pt-24 pb-16">
+
+      <div className="pt-20 md:pt-24 pb-16 flex-1">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -67,10 +68,10 @@ const Monetization = () => {
           className="container mx-auto px-4"
         >
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-display text-primary mb-4">
+            <h1 className="text-3xl md:text-5xl font-display text-primary mb-4">
               Plan Your Dream Vacation
             </h1>
-            <p className="text-primary/80 text-lg mb-6">
+            <p className="text-primary/80 text-base md:text-lg mb-6">
               My main purpose is to help you plan the best vacation possible. Let me create a customized travel experience that matches your preferences and budget.
             </p>
             
@@ -78,7 +79,7 @@ const Monetization = () => {
               <QuickPlannerDialog />
             </div>
 
-            <h2 className="text-3xl font-display text-primary mb-6">Services I Offer</h2>
+            <h2 className="text-2xl md:text-3xl font-display text-primary mb-6">Services I Offer</h2>
             <div className="grid md:grid-cols-2 gap-8 mb-16">
               {services.map((service, index) => (
                 <ServiceCard key={index} {...service} />
@@ -90,9 +91,9 @@ const Monetization = () => {
             <div className="bg-white shadow-lg rounded-lg p-8">
               <div className="flex items-center mb-6">
                 <Mail className="w-6 h-6 text-primary mr-3" />
-                <h2 className="text-2xl font-display text-primary">Get in Touch</h2>
+                <h2 className="text-xl md:text-2xl font-display text-primary">Get in Touch</h2>
               </div>
-              <p className="text-primary/80 mb-8">
+              <p className="text-primary/80 text-base md:text-lg mb-8">
                 Ready to plan your dream vacation? Let's discuss how I can help make your travel dreams a reality.
               </p>
               <ContactDialog />
@@ -100,6 +101,8 @@ const Monetization = () => {
           </div>
         </motion.div>
       </div>
+
+      <Footer />
     </div>
   );
 };

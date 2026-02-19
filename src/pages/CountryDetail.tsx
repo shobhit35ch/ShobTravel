@@ -1,6 +1,7 @@
 
 import { useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -24,6 +25,22 @@ const CountryDetail = () => {
 
   // This would ideally come from a database, but for now we'll hardcode it
   const countriesData: Record<string, CountryData> = {
+    japan: {
+      country: "Japan",
+      description: "From neon-lit Tokyo to ancient Kyoto temples and Osaka's legendary food scene",
+      places: [
+        { name: "Tokyo", description: "Explored Shibuya Crossing, Akihabara's electric town, TeamLab Borderless, and the peaceful Meiji Shrine" },
+        { name: "Kyoto", description: "Walked through thousands of torii gates at Fushimi Inari, visited the Golden Pavilion, and biked through the Bamboo Grove" },
+        { name: "Osaka", description: "Devoured takoyaki and okonomiyaki in Dotonbori, explored Osaka Castle, and experienced Shinsekai's retro charm" },
+        { name: "Mount Fuji", description: "Day trip to Kawaguchiko for the most incredible sunset views of Japan's iconic peak" }
+      ],
+      imageUrl: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1470&auto=format&fit=crop",
+      detailedDescription: "Japan was an absolute dream trip. Two weeks of exploring the perfect blend of ultra-modern cities and ancient traditions. Tokyo's energy is unmatched, Kyoto's temples are breathtaking, and Osaka's food scene is next level. Every moment felt like stepping into a different world - from the serene bamboo groves to the neon-drenched streets of Shinjuku. The JR Pass made getting around a breeze, and the people were incredibly welcoming.",
+      gallery: [
+        "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1470&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?q=80&w=1470&auto=format&fit=crop"
+      ]
+    },
     italy: {
       country: "Italy",
       description: "Discovered ancient history, art, and incredible cuisine",
@@ -64,13 +81,13 @@ const CountryDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 pt-32 pb-16"
+        className="container mx-auto px-4 pt-20 md:pt-32 pb-16 flex-1"
       >
         <Link
           to="/destinations"
@@ -81,7 +98,7 @@ const CountryDetail = () => {
         </Link>
 
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-display text-primary mb-6">{countryData.country}</h1>
+          <h1 className="text-3xl md:text-4xl font-display text-primary mb-6">{countryData.country}</h1>
           
           <div className="aspect-video w-full rounded-lg overflow-hidden mb-8">
             <img
@@ -95,7 +112,7 @@ const CountryDetail = () => {
             {countryData.detailedDescription}
           </p>
 
-          <h2 className="text-2xl font-display text-primary mb-6">Places Visited</h2>
+          <h2 className="text-xl md:text-2xl font-display text-primary mb-6">Places Visited</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {countryData.places.map((place, index) => (
               <motion.div
@@ -113,7 +130,7 @@ const CountryDetail = () => {
 
           {countryData.gallery && countryData.gallery.length > 0 && (
             <>
-              <h2 className="text-2xl font-display text-primary my-8">Photo Gallery</h2>
+              <h2 className="text-xl md:text-2xl font-display text-primary my-8">Photo Gallery</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {countryData.gallery.map((image, index) => (
                   <div key={index} className="aspect-video rounded-lg overflow-hidden">
@@ -129,6 +146,8 @@ const CountryDetail = () => {
           )}
         </div>
       </motion.div>
+
+      <Footer />
     </div>
   );
 };
