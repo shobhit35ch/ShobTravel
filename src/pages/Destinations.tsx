@@ -2,13 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { MapPin, PlaneTakeoff } from "lucide-react";
+import { MapPin, PlaneTakeoff, Star } from "lucide-react";
 
 const Destinations = () => {
   const visitedCountries = [
@@ -119,9 +113,24 @@ const Destinations = () => {
     }
   ];
 
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.08, duration: 0.4 }
+    })
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -129,109 +138,166 @@ const Destinations = () => {
         className="container mx-auto px-4 pt-20 md:pt-32 pb-16 flex-1"
       >
         <div className="max-w-4xl mx-auto">
-          <h1 className="font-display text-2xl sm:text-3xl md:text-4xl text-primary mb-8 md:mb-12">My Travel Map</h1>
+          <h1 className="font-display text-2xl sm:text-3xl md:text-4xl text-primary mb-4">My Travel Map</h1>
+          <p className="text-primary/60 text-sm sm:text-base mb-16">A living record of where I've been, where I'm headed, and where I dream of going.</p>
 
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="visited">
-              <AccordionTrigger className="flex items-center gap-2 text-base sm:text-lg md:text-xl">
-                <MapPin className="h-5 w-5 flex-shrink-0" />
-                Where I've Been
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 p-2 sm:p-4">
-                  {visitedCountries.map((country, index) => (
-                    <Link key={index} to={`/country/${country.id}`}>
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-                      >
-                        <div className="aspect-video overflow-hidden">
-                          <img
-                            src={country.imageUrl}
-                            alt={country.country}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div className="p-4 sm:p-6">
-                          <h3 className="font-display text-lg sm:text-xl text-primary mb-2">{country.country}</h3>
-                          <p className="text-primary/70 text-sm mb-4">{country.description}</p>
-                          <div className="space-y-3">
-                            {country.places.map((place, placeIndex) => (
-                              <div key={placeIndex} className="border-l-2 border-accent pl-3">
-                                <h4 className="font-medium text-primary text-sm">{place.name}</h4>
-                                <p className="text-primary/70 text-xs sm:text-sm">{place.description}</p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </motion.div>
-                    </Link>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
+          {/* Where I've Been */}
+          <motion.section
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="mb-20"
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10">
+                <MapPin className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <h2 className="font-display text-xl sm:text-2xl md:text-3xl text-primary">Where I've Been</h2>
+                <p className="text-primary/50 text-xs sm:text-sm">{visitedCountries.length} countries explored</p>
+              </div>
+            </div>
 
-            <AccordionItem value="upcoming">
-              <AccordionTrigger className="flex items-center gap-2 text-base sm:text-lg md:text-xl">
-                <PlaneTakeoff className="h-5 w-5 flex-shrink-0" />
-                Where I'm Going
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 p-2 sm:p-4">
-                  {upcomingTrips.map((trip, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-                    >
-                      <div className="aspect-video overflow-hidden">
-                        <img
-                          src={trip.imageUrl}
-                          alt={trip.country}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="p-4 sm:p-6">
-                        <h3 className="font-display text-lg sm:text-xl text-primary mb-2">{trip.country}</h3>
-                        <p className="text-primary/70 text-sm mb-4">{trip.description}</p>
-                        <div className="space-y-3">
-                          {trip.places.map((place, placeIndex) => (
-                            <div key={placeIndex} className="border-l-2 border-accent pl-3">
-                              <h4 className="font-medium text-primary text-sm">{place.name}</h4>
-                              <p className="text-primary/70 text-xs sm:text-sm">{place.description}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="bucket-list">
-              <AccordionTrigger className="flex items-center gap-2 text-base sm:text-lg md:text-xl">
-                <MapPin className="h-5 w-5 flex-shrink-0" />
-                Where I Want to Go
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="space-y-4 p-2 sm:p-4">
-                  {bucketList.map((place, index) => (
-                    <div key={index} className="border-l-2 border-accent pl-4">
-                      <h3 className="font-display text-lg text-primary">{place.name}</h3>
-                      <p className="text-primary/70 mt-1 text-sm">{place.description}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              {visitedCountries.map((country, index) => (
+                <Link key={index} to={`/country/${country.id}`}>
+                  <motion.div
+                    custom={index}
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-40px" }}
+                    className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all hover:-translate-y-1 duration-200"
+                  >
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        src={country.imageUrl}
+                        alt={country.country}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
                     </div>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+                    <div className="p-4 sm:p-6">
+                      <h3 className="font-display text-lg sm:text-xl text-primary mb-2">{country.country}</h3>
+                      <p className="text-primary/70 text-sm mb-4">{country.description}</p>
+                      <div className="space-y-3">
+                        {country.places.map((place, placeIndex) => (
+                          <div key={placeIndex} className="border-l-2 border-accent pl-3">
+                            <h4 className="font-medium text-primary text-sm">{place.name}</h4>
+                            <p className="text-primary/70 text-xs sm:text-sm">{place.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </Link>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Divider */}
+          <div className="relative mb-20">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-primary/10" />
+            </div>
+          </div>
+
+          {/* Where I'm Going */}
+          <motion.section
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="mb-20"
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10">
+                <PlaneTakeoff className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <h2 className="font-display text-xl sm:text-2xl md:text-3xl text-primary">Where I'm Going</h2>
+                <p className="text-primary/50 text-xs sm:text-sm">{upcomingTrips.length} trips on the horizon</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              {upcomingTrips.map((trip, index) => (
+                <motion.div
+                  key={index}
+                  custom={index}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-40px" }}
+                  className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all hover:-translate-y-1 duration-200"
+                >
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={trip.imageUrl}
+                      alt={trip.country}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-4 sm:p-6">
+                    <h3 className="font-display text-lg sm:text-xl text-primary mb-2">{trip.country}</h3>
+                    <p className="text-primary/70 text-sm mb-4">{trip.description}</p>
+                    <div className="space-y-3">
+                      {trip.places.map((place, placeIndex) => (
+                        <div key={placeIndex} className="border-l-2 border-accent pl-3">
+                          <h4 className="font-medium text-primary text-sm">{place.name}</h4>
+                          <p className="text-primary/70 text-xs sm:text-sm">{place.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Divider */}
+          <div className="relative mb-20">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-primary/10" />
+            </div>
+          </div>
+
+          {/* Where I Want to Go */}
+          <motion.section
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10">
+                <Star className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <h2 className="font-display text-xl sm:text-2xl md:text-3xl text-primary">Where I Want to Go</h2>
+                <p className="text-primary/50 text-xs sm:text-sm">The dream list</p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {bucketList.map((place, index) => (
+                <motion.div
+                  key={index}
+                  custom={index}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-40px" }}
+                  className="bg-white rounded-xl p-5 sm:p-6 shadow-md border-l-4 border-accent hover:shadow-lg transition-shadow"
+                >
+                  <h3 className="font-display text-lg sm:text-xl text-primary mb-1">{place.name}</h3>
+                  <p className="text-primary/70 text-sm">{place.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
         </div>
       </motion.div>
 
